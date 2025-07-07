@@ -60,7 +60,7 @@ def preprocess_input(df):
 
     return df[final_features]
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/diagnosis', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         if 'csv_file' in request.files:
@@ -77,7 +77,7 @@ def index():
         df = pd.DataFrame([form_data])
         X_input_df = preprocess_input(df)
         return redirect(url_for('result', source='manual'))
-    return render_template('index.html')
+    return render_template('diagnosis.html')
 
 @app.route('/result')
 def result():
