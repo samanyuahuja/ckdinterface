@@ -1,15 +1,23 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
 }
 
-h1, h2 {
+.navbar-brand {
   font-weight: 600;
 }
 
 .section-box {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  background: #fff;
+  border: 1px solid #dee2e6;
   border-radius: 6px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h1, h2 {
+  font-weight: 700;
 }
 
 .btn-primary {
@@ -17,20 +25,21 @@ h1, h2 {
   border-color: #0056b3;
 }
 
+.btn-primary:hover {
+  background-color: #004494;
+  border-color: #004494;
+}
+
 .btn-outline-primary {
   color: #0056b3;
   border-color: #0056b3;
 }
 
-.btn-primary:hover, .btn-outline-primary:hover {
-  background-color: #004494;
-  border-color: #004494;
+.btn-outline-primary:hover {
+  background-color: #0056b3;
+  color: #fff;
 }
 
 footer {
   font-size: 0.9rem;
-}
-
-input, select, .form-control {
-  max-width: 400px;
 }
