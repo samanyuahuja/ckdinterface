@@ -32,3 +32,12 @@ function generateDietPlan() {
     </ul>
   `;
 }
+// === 🌙 Dark Mode Toggle ===
+document.addEventListener("DOMContentLoaded", function() {
+  const toggleButton = document.getElementById('darkToggle');
+
+  toggleButton.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+  });
+});
+
