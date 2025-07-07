@@ -101,3 +101,29 @@ footer {
     padding: 40px 10px;
   }
 }
+/* === Dark Mode === */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode nav {
+  background-color: #1f1f1f;
+}
+
+body.dark-mode header {
+  background: #1a237e;
+}
+
+body.dark-mode section {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+}
+
+body.dark-mode footer {
+  background-color: #1a237e;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}
