@@ -39,14 +39,23 @@
     <input type="file" class="form-control mb-3" />
 
     <h2 class="border-bottom pb-2">🔹 Or Enter Details Manually</h2>
-    <form>
-      <div class="row mb-3">
-        <div class="col"><input type="number" class="form-control" placeholder="Age"></div>
-        <div class="col"><input type="number" class="form-control" placeholder="Blood Pressure"></div>
-        <div class="col"><input type="number" class="form-control" placeholder="Serum Creatinine"></div>
-      </div>
-      <button type="submit" class="btn btn-primary">Generate CKD Report</button>
-    </form>
+    <form action="{{ url_for('diagnosis') }}" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="file" class="form-label">Upload CSV Medical Report</label>
+      <input type="file" class="form-control" id="file" name="file">
+    </div>
+  
+    <p class="text-center fw-bold">— OR —</p>
+  
+    <div class="row mb-3">
+      <div class="col"><input type="number" name="age" class="form-control" placeholder="Age"></div>
+      <div class="col"><input type="number" name="bp" class="form-control" placeholder="Blood Pressure"></div>
+      <div class="col"><input type="number" name="sc" class="form-control" placeholder="Serum Creatinine"></div>
+    </div>
+    <!-- Add more inputs as needed following the same pattern -->
+  
+    <button type="submit" class="btn btn-primary">Generate CKD Report</button>
+  </form>
   </section>
 </main>
 
