@@ -39,23 +39,122 @@
     <input type="file" class="form-control mb-3" />
 
     <h2 class="border-bottom pb-2">🔹 Or Enter Details Manually</h2>
-    <form action="{{ url_for('diagnosis') }}" method="post" enctype="multipart/form-data">
-    <div class="mb-3">
-      <label for="file" class="form-label">Upload CSV Medical Report</label>
-      <input type="file" class="form-control" id="file" name="file">
-    </div>
-  
-    <p class="text-center fw-bold">— OR —</p>
-  
-    <div class="row mb-3">
-      <div class="col"><input type="number" name="age" class="form-control" placeholder="Age"></div>
-      <div class="col"><input type="number" name="bp" class="form-control" placeholder="Blood Pressure"></div>
-      <div class="col"><input type="number" name="sc" class="form-control" placeholder="Serum Creatinine"></div>
-    </div>
-    <!-- Add more inputs as needed following the same pattern -->
-  
-    <button type="submit" class="btn btn-primary">Generate CKD Report</button>
-  </form>
+    <form action="/predict" method="POST">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="age" placeholder="Age" required>
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="bp" placeholder="Blood Pressure" required>
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="al" placeholder="Albumin (0-5)" min="0" max="5">
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="su" placeholder="Sugar (0-5)" min="0" max="5">
+        </div>
+        <div class="col">
+          <select class="form-control" name="rbc">
+            <option value="">Red Blood Cells</option>
+            <option value="normal">Normal</option>
+            <option value="abnormal">Abnormal</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" name="pc">
+            <option value="">Pus Cell</option>
+            <option value="normal">Normal</option>
+            <option value="abnormal">Abnormal</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <select class="form-control" name="ba">
+            <option value="">Bacteria</option>
+            <option value="present">Present</option>
+            <option value="notpresent">Not Present</option>
+          </select>
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="bgr" placeholder="Blood Glucose Random">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="bu" placeholder="Blood Urea">
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="sc" placeholder="Serum Creatinine">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="sod" placeholder="Sodium">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="pot" placeholder="Potassium">
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="hemo" placeholder="Hemoglobin">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="wbcc" placeholder="WBC Count">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="rbcc" placeholder="RBC Count">
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <select class="form-control" name="htn">
+            <option value="">Hypertension</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" name="dm">
+            <option value="">Diabetes Mellitus</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" name="appet">
+            <option value="">Appetite</option>
+            <option value="good">Good</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+      </div>
+    
+      <div class="row mb-3">
+        <div class="col">
+          <select class="form-control" name="pe">
+            <option value="">Pedal Edema</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="col">
+          <select class="form-control" name="ane">
+            <option value="">Anemia</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Generate CKD Report</button>
+    </form>
   </section>
 </main>
 
