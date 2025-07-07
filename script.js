@@ -1,16 +1,14 @@
 function askChatbot() {
-  const input = document.getElementById('chatInput').value;
-  const responseBox = document.getElementById('chatbotResponse');
-  if (input.trim() === "") {
-    responseBox.innerText = "Please enter a question.";
+  const input = document.getElementById("chatInput").value.trim();
+  const response = document.getElementById("chatbotResponse");
+  if (input === "") {
+    response.innerText = "Please enter a question.";
   } else {
-    // Placeholder response — integrate AI later
-    responseBox.innerText = `You asked: "${input}". Our assistant will reply soon.`;
+    response.innerText = `You asked: "${input}". Our AI will respond shortly.`;
   }
 }
 
 function generateDietPlan() {
-  const dietBox = document.getElementById('dietPlanOutput');
-  // Placeholder diet plan — integrate AI logic later
-  dietBox.innerText = "Your CKD-friendly diet plan will appear here.";
+  const diet = document.getElementById("dietPlanOutput");
+  diet.innerText = "Your personalized CKD-friendly diet plan will appear here soon.";
 }
