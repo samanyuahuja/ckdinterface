@@ -2,40 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NephroSense</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NephroCare | Home</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>NephroSense: CKD Risk Assessment</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About CKD</a>
-      <a href="diagnosis.html">Your Diagnosis</a>
-      <a href="diet.html">Diet Plan</a>
-      <a href="language.html">Language</a>
-    </nav>
-    <button id="darkToggle">🌙 Toggle Dark Mode</button>
-  </header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand text-primary" href="index.html">NephroCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="about.html">About CKD</a></li>
+        <li class="nav-item"><a class="nav-link" href="diagnosis.html">Your Diagnosis</a></li>
+        <li class="nav-item"><a class="nav-link" href="diet.html">Diet Plans</a></li>
+        <li class="nav-item"><a class="nav-link" href="chatbot.html">Chatbot</a></li>
+        <li class="nav-item"><a class="nav-link" href="language.html">Language</a></li>
+      </ul>
+      <button id="darkToggle" class="btn btn-outline-primary ms-3">🌙 Dark Mode</button>
+    </div>
+  </div>
+</nav>
 
-  <main>
-    <section class="hero">
-      <h2>Welcome to NephroSense</h2>
-      <p>Your trusted partner in kidney health</p>
-    </section>
+<header class="p-5 text-center bg-primary text-white">
+  <h1>Welcome to NephroCare</h1>
+  <p>Your CKD Risk Assessment & Guidance Platform</p>
+</header>
 
-    <section class="info">
-      <h3>🔹 Get Started</h3>
-      <a href="diagnosis.html" class="btn">Start Diagnosis</a>
-    </section>
-  </main>
+<main class="container mt-4">
+  <section>
+    <h2 class="border-bottom pb-2">🔹 Your Trusted CKD Companion</h2>
+    <p>NephroCare helps you assess your risk of Chronic Kidney Disease (CKD), access expert guidance, and explore diet and lifestyle recommendations — all in one secure, easy-to-use platform.</p>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 NephroSense. All rights reserved.</p>
-  </footer>
+  <section>
+    <h2 class="border-bottom pb-2">🔹 Quick Links</h2>
+    <ul>
+      <li><a href="diagnosis.html">Get Your CKD Diagnosis</a></li>
+      <li><a href="diet.html">Explore AI Diet Plans</a></li>
+      <li><a href="chatbot.html">Chat with our CKD Assistant</a></li>
+      <li><a href="about.html">Learn About CKD</a></li>
+    </ul>
+  </section>
+</main>
 
-  <script src="scripts.js"></script>
+<footer class="bg-light text-center py-3 mt-5">
+  <p class="mb-0">&copy; 2025 NephroCare. All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>
 <!--<!DOCTYPE html>
