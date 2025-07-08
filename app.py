@@ -10,6 +10,9 @@ import uuid
 from sklearn.inspection import PartialDependenceDisplay
 
 app = Flask(__name__)
+app.secret_key = 'nephrosense_secret'
+
+os.makedirs("static/plots", exist_ok=True)
 @app.route('/')
 def home():
     return render_template("index.html")  # ✅ this loads your index.html homepage  # 'index' points to /diagnosis
