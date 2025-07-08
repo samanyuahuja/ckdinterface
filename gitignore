@@ -23,10 +23,6 @@ instance/
 *.db
 *.pid
 
-# === Model Checkpoints and Artifacts ===
-# (We're allowing pkl and joblib files — comment these out if you want to ignore them)
-# *.pkl
-# *.joblib
 
 # === Frontend Build Files ===
 dist/
