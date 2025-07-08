@@ -9,8 +9,12 @@ import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
 
+
 app = Flask(__name__)
 app.secret_key = 'nephrosense_secret'
+@app.route('/')
+def home():
+    return "NephroSense Flask App is running successfully!"
 
 # Load model + scaler + train data
 def load_resources(model_choice="rf"):
