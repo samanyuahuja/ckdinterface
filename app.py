@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import pandas as pd
 import numpy as np
-import shap
+import shap 
 import lime.lime_tabular
 import matplotlib.pyplot as plt
 import joblib
