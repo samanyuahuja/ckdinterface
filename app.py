@@ -171,7 +171,7 @@ def result():
                            proba=round(proba[0],3),
                            no_ckd_proba=round(no_ckd_proba,3),
                            shap_plot=shap_plot_path,
-                           pdp_plot=pdp_plot_path
+                           pdp_plot=pdp_plot_path,
                            lime_plot=lime_plot_path)
 
 if __name__ == "__main__":
