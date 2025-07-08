@@ -35,17 +35,17 @@
 
 <main class="container mt-4">
   <section>
-    <h2 class="border-bottom pb-2">🔹 Your Trusted CKD Companion</h2>
+    <h2 class="border-bottom pb-2">Your Trusted CKD Companion</h2>
     <p>NephroCare helps you assess your risk of Chronic Kidney Disease (CKD), access expert guidance, and explore diet and lifestyle recommendations — all in one secure, easy-to-use platform.</p>
   </section>
   
   <section>
-    <h2 class="border-bottom pb-2">🔹 Quick Links</h2>
-    <ul>
-      <li><a href="diagnosis.html">Get Your CKD Diagnosis</a></li>
-      <li><a href="diet.html">Explore AI Diet Plans</a></li>
-      <li><a href="chatbot.html">Chat with our CKD Assistant</a></li>
-      <li><a href="about.html">Learn About CKD</a></li>
+    <h2 class="border-bottom pb-2">Quick Links</h2>
+    <ul class="list-unstyled">
+      <li><a class="ckd-link" href="{{ url_for('index') }}">Get Your CKD Diagnosis</a></li>
+      <li><a class="ckd-link" href="{{ url_for('diet') }}">Explore AI Diet Plans</a></li>
+      <li><a class="ckd-link" href="{{ url_for('chatbot') }}">Chat with our CKD Assistant</a></li>
+      <li><a class="ckd-link" href="{{ url_for('about') }}">Learn About CKD</a></li>
     </ul>
   </section>
 </main>
