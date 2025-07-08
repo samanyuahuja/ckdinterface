@@ -15,13 +15,13 @@ app.secret_key = 'nephrosense_secret'
 # Load model + scaler + train data
 def load_resources(model_choice="rf"):
     if model_choice == "rf":
-        model = joblib.load("models/rf_model_final (1).pkl")
+        model = joblib.load("models/rf_model_final.pkl")
     elif model_choice == "logistic":
-        model = joblib.load("models/logistic_model_final (1).pkl")
+        model = joblib.load("models/logistic_model_final.pkl")
     else:
         raise ValueError("Unknown model choice")
     
-    scaler = joblib.load("models/scaler_final (1).pkl")
+    scaler = joblib.load("models/scaler_final.pkl")
     try:
         X_train_res = joblib.load("models/X_train_res_scaled_final.pkl")
     except:
