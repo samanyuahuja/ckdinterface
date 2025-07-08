@@ -9,6 +9,7 @@ import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
 
+app = Flask(__name__)
 @app.route('/')
 def home():
     return redirect(url_for('index'))  # 'index' points to /diagnosis
