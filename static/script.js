@@ -42,3 +42,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("diagnosisForm");
+  const spinner = document.getElementById("loadingSpinner");
+
+  if (form && spinner) {
+    form.addEventListener("submit", function () {
+      spinner.style.display = "block";
+      form.style.display = "none";
+    });
+  }
+});
