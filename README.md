@@ -47,3 +47,18 @@ Tech Stack
 └── README.md
 
 Requirements
+
+Flask==2.2.5
+pandas==2.2.2
+numpy==1.26.2
+scikit-learn==1.3.2
+matplotlib==3.8.4
+shap==0.43.0
+lime==0.2.0.1
+seaborn==0.13.2
+joblib==1.3.2
+gunicorn==21.2.0
+ipython
+
+Access the app at: http://127.0.0.1:5000
+
