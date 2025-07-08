@@ -72,6 +72,9 @@ htmlcov/
 # ==== Frontend cache ====
 .cache/
 coverage/
+# Allow model files in the models/ folder
+!models/
+!models/*.pkl
 
 # ==== Misc ====
 !static/
