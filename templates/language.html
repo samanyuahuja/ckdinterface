@@ -11,28 +11,27 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container-fluid">
-    <a class="navbar-brand text-primary" href="index.html">NephroCare</a>
+    <a class="navbar-brand text-primary" href="{{ url_for('home') }}">NephroCare</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="about.html">About CKD</a></li>
-        <li class="nav-item"><a class="nav-link" href="diagnosis.html">Your Diagnosis</a></li>
-        <li class="nav-item"><a class="nav-link" href="diet.html">Diet Plans</a></li>
-        <li class="nav-item"><a class="nav-link" href="chatbot.html">Chatbot</a></li>
-        <li class="nav-item"><a class="nav-link" href="language.html">Language</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About CKD</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Your Diagnosis</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('diet') }}">Diet Plans</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('chatbot') }}">Chatbot</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('language') }}">Language</a></li>
       </ul>
       <button id="darkToggle" class="btn btn-outline-primary ms-3">🌙 Dark Mode</button>
     </div>
   </div>
 </nav>
 
-<header class="p-5 text-center bg-primary text-white">
-  <h1>Welcome to NephroCare</h1>
-  <p>Your CKD Risk Assessment & Guidance Platform</p>
+<header class="p-5 text-center" style="background: linear-gradient(to right, #005eb8, #0072ce); color: white;">
+  <h1 style="font-weight: 700;">NephroCare</h1>
+  <p>Your trusted partner in understanding and managing Chronic Kidney Disease</p>
 </header>
-
 <main class="container mt-4">
   <section>
     <h2 class="border-bottom pb-2">🔹 Choose Your Language</h2>
