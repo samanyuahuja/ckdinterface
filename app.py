@@ -12,8 +12,26 @@ from sklearn.inspection import PartialDependenceDisplay
 app = Flask(__name__)
 @app.route('/')
 def home():
-    return redirect(url_for('index'))  # 'index' points to /diagnosis
+    return redirect(url_for('index.html'))  # 'index' points to /diagnosis
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
+@app.route('/chatbot')
+def chatbot():
+    return render_template("chatbot.html")
+
+@app.route('/diet')
+def diet():
+    return render_template("diet.html")
+
+@app.route('/language')
+def language():
+    return render_template("language.html")
+
+@app.route('/diagnosis', methods=['GET', 'POST'])
+def index():
+    # your form logic here
 # Load model + scaler + train data
 def load_resources(model_choice="rf"):
     if model_choice == "rf":
