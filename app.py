@@ -29,8 +29,7 @@ def diet():
 def language():
     return render_template("language.html")
 
-@app.route('/diagnosis', methods=['GET', 'POST'])
-def index():
+
     # your form logic here
 # Load model + scaler + train data
 def load_resources(model_choice="rf"):
