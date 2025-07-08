@@ -12,7 +12,7 @@ from sklearn.inspection import PartialDependenceDisplay
 app = Flask(__name__)
 @app.route('/')
 def home():
-    return redirect(url_for('index.html'))  # 'index' points to /diagnosis
+    return render_template("index.html")  # ✅ this loads your index.html homepage  # 'index' points to /diagnosis
 @app.route('/about')
 def about():
     return render_template("about.html")
