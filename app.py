@@ -147,12 +147,32 @@ def result():
     plt.savefig(pdp_plot_path)
     plt.close()
 
+    # LIME plot generation
+    lime_explainer = lime.lime_tabular.LimeTabularExplainer(
+        training_data=np.array(X_train_res),
+        feature_names=final_features,
+        class_names=["No CKD", "CKD"],
+        mode="classification",
+        discretize_continuous=True
+    )
+    
+    lime_exp = lime_explainer.explain_instance(
+        data_row=X_scaled[0],
+        predict_fn=model.predict_proba
+    )
+    
+    lime_plot_path = f"static/plots/lime_{uuid.uuid4()}.png"
+    lime_exp.as_pyplot_figure()
+    plt.tight_layout()
+    plt.savefig(lime_plot_path)
+    plt.close()
     return render_template("result.html",
                            prediction=prediction[0],
                            proba=round(proba[0],3),
                            no_ckd_proba=round(no_ckd_proba,3),
                            shap_plot=shap_plot_path,
-                           pdp_plot=pdp_plot_path)
+                           pdp_plot=pdp_plot_path
+                           lime_plot=lime_plot_path)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
