@@ -1,0 +1,78 @@
+
+# ==== Python ====
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+
+# ==== Virtual environments ====
+venv/
+.venv/
+env/
+.env/
+.envrc
+
+# ==== Machine Learning ====
+*.pkl
+*.joblib
+*.h5
+*.model
+*.weights
+
+# ==== Logs and output ====
+*.log
+*.out
+*.tmp
+*.cache
+*.dat
+*.csv
+*.json
+
+# ==== OS & IDE ====
+.DS_Store
+*.swp
+*.swo
+*.bak
+*.~ 
+.vscode/
+.idea/
+
+# ==== Node / Web-related ====
+node_modules/
+dist/
+build/
+
+# ==== Flask ====
+instance/
+*.db
+*.sqlite3
+
+# ==== Deployment Artifacts ====
+*.tar
+*.zip
+*.gz
+
+# ==== Plots and Visualizations ====
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+# ==== Other temp ====
+*.tmp
+*.log
+*.coverage
+htmlcov/
+
+# ==== Frontend cache ====
+.cache/
+coverage/
+
+# ==== Misc ====
+!static/
+!templates/
