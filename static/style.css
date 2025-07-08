@@ -144,3 +144,16 @@ input, button {
   font-weight: 600;
   color: #0056b3;
 }
+.ckd-link {
+  display: inline-block;
+  font-weight: 600;
+  color: #005eb8;
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.ckd-link:hover {
+  color: #003d80;
+  text-decoration: underline;
+}
