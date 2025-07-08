@@ -33,14 +33,24 @@ function generateDietPlan() {
   `;
 }
 // === 🌙 Dark Mode Toggle ===
-document.addEventListener("DOMContentLoaded", function() {
-  const toggleButton = document.getElementById('darkToggle');
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleButton = document.getElementById("darkToggle");
+  const body = document.body;
 
-  if (toggleButton) {
-    toggleButton.addEventListener('click', function() {
-      document.body.classList.toggle('dark-mode');
-    });
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-mode");
+    toggleButton.textContent = "☀️ Light Mode";
   }
+
+  toggleButton.addEventListener("click", function () {
+    body.classList.toggle("dark-mode");
+
+    const isDark = body.classList.contains("dark-mode");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    toggleButton.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+  });
 });
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("diagnosisForm");
