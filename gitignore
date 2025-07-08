@@ -1,83 +1,52 @@
-
-# ==== Python ====
+# === Python ===
 __pycache__/
 *.py[cod]
 *.so
-*.egg
 *.egg-info/
-*.pyo
-*.pyd
-*.ipynb_checkpoints/
-
-# ==== Virtual environments ====
-venv/
-.venv/
-env/
-.env/
-.envrc
-
-# ==== Machine Learning ====
-*.pkl
-*.joblib
-*.h5
-*.model
-*.weights
-
-# ==== Logs and output ====
 *.log
-*.out
-*.tmp
-*.cache
-*.dat
-*.csv
-*.json
 
-# ==== OS & IDE ====
+# === Virtual Environments ===
+venv/
+env/
+.venv/
+
+# === Jupyter Notebooks Checkpoints ===
+.ipynb_checkpoints/
+
+# === System Files ===
 .DS_Store
+Thumbs.db
+
+# === Flask / Gunicorn Logs ===
+instance/
+*.sqlite3
+*.db
+*.pid
+
+# === Model Checkpoints and Artifacts ===
+# (We're allowing pkl and joblib files — comment these out if you want to ignore them)
+# *.pkl
+# *.joblib
+
+# === Frontend Build Files ===
+dist/
+build/
+node_modules/
+
+# === OS-specific ===
 *.swp
 *.swo
-*.bak
-*.~ 
+ehthumbs.db
+Icon?
+
+# === VS Code / IDE settings ===
 .vscode/
 .idea/
 
-# ==== Node / Web-related ====
-node_modules/
-dist/
-build/
+# === Secrets / Config (make sure .env is actually ignored if used) ===
+.env
+.env.*
 
-# ==== Flask ====
-instance/
-*.db
-*.sqlite3
-
-# ==== Deployment Artifacts ====
-*.tar
-*.zip
-*.gz
-
-# ==== Plots and Visualizations ====
-*.png
-*.jpg
-*.jpeg
-*.svg
-*.pdf
-
-# ==== Other temp ====
-*.tmp
-*.log
-*.coverage
-htmlcov/
-
-# ==== Frontend cache ====
-.cache/
-coverage/
-
-
-# ==== Misc ====
-!static/
-!templates/
-# Allow model files in the models folder
-!models/
-!models/*.pkl
-!models/*.joblib
+# === Static cache ===
+__MACOSX/
+*.bak
