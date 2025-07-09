@@ -10,7 +10,9 @@ import joblib
 import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
-from weasyprint import HTML
+from flask import make_response
+from xhtml2pdf import pisa
+from io import BytesIO
 
 
 app = Flask(__name__)
@@ -352,12 +354,18 @@ def download_diet():
     diet_type = request.args.get('type', 'veg')
 
     html = render_template('diet_pdf.html', eat=eat, avoid=avoid, top3=top3, diet_type=diet_type)
-    pdf = HTML(string=html).write_pdf()
 
-    response = make_response(pdf)
-    response.headers["Content-Type"] = "application/pdf"
-    response.headers["Content-Disposition"] = "attachment; filename=diet_plan.pdf"
-    return response
+    # Convert HTML to PDF using xhtml2pdf
+    result = BytesIO()
+    pdf = pisa.CreatePDF(BytesIO(html.encode("utf-8")), dest=result)
+
+    if not pdf.err:
+        response = make_response(result.getvalue())
+        response.headers["Content-Type"] = "application/pdf"
+        response.headers["Content-Disposition"] = "attachment; filename=diet_plan.pdf"
+        return response
+    else:
+        return "❌ Failed to generate PDF", 500
 
 
 @app.route('/diet')
