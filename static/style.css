@@ -233,7 +233,7 @@ a:hover {
   text-shadow: 0 1px 3px rgba(0,0,0,0.8);
   box-sizing: border-box;
 }
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
   .cornell-style-section {
     flex-direction: row;
     flex-wrap: wrap;
