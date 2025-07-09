@@ -22,16 +22,44 @@ function chatbotReply(userInput) {
 }
 
 // Example: Dummy diet plan generator (replace with real logic later)
-function generateDietPlan() {
-  return `
-    <ul>
-      <li>🥗 Breakfast: Oatmeal with fresh berries</li>
-      <li>🍗 Lunch: Grilled chicken with quinoa and steamed veggies</li>
-      <li>🍎 Snack: Apple slices with almond butter</li>
-      <li>🍲 Dinner: Baked salmon with brown rice and broccoli</li>
-    </ul>
-  `;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.getElementById("toggleDiet");
+  const foodEatList = document.getElementById("foodEatList");
+  const downloadBtn = document.getElementById("downloadPdfBtn");
+
+  if (!toggle || !foodEatList || !downloadBtn) return;
+
+  const vegList = {{ diet_eat|tojson }};
+  const nonvegList = {{ diet_nonveg|tojson }};
+  const avoidList = {{ diet_avoid|tojson }};
+  const top3 = {{ top3|tojson }};
+
+  function updateFoodList() {
+    const list = toggle.checked ? nonvegList : vegList;
+    foodEatList.innerHTML = "";
+    list.forEach(item => {
+      const li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = item;
+      foodEatList.appendChild(li);
+    });
+  }
+
+  updateFoodList();
+
+  toggle.addEventListener("change", updateFoodList);
+
+  downloadBtn.addEventListener("click", () => {
+    const type = toggle.checked ? "nonveg" : "veg";
+    const url = new URL("/download-diet", window.location.origin);
+    vegList.forEach(val => url.searchParams.append("eat", val));
+    avoidList.forEach(val => url.searchParams.append("avoid", val));
+    top3.forEach(val => url.searchParams.append("top3", val));
+    url.searchParams.append("type", type);
+    window.location.href = url.toString();
+  });
+});
+
 // === 🌙 Dark Mode Toggle ===
 console.log("Dark mode script loaded");
 document.addEventListener("DOMContentLoaded", function () {
