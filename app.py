@@ -337,23 +337,25 @@ def result():
                            pdp_plot=pdp_plot_path,
                            lime_plot=lime_plot_path,
                            insights=insights)
+
 @app.route('/download-diet')
 def download_diet():
-    diet_type = request.args.get('type', 'veg')
-    eats = request.args.getlist('eat')
-    avoids = request.args.getlist('avoid')
+    veg_foods = request.args.getlist('eat')
+    avoid_foods = request.args.getlist('avoid')
     top3 = request.args.getlist('top3')
+    diet_type = request.args.get('type', 'veg')
 
-    html = render_template('diet_pdf.html',
-                           type=diet_type,
-                           eats=eats,
-                           avoids=avoids,
-                           top3=top3)
+    rendered_html = render_template("diet_pdf.html",
+                                    veg_foods=veg_foods,
+                                    avoid_foods=avoid_foods,
+                                    top3=top3,
+                                    diet_type=diet_type)
 
-    pdf = pdfkit.from_string(html, False)
+    pdf = HTML(string=rendered_html).write_pdf()
+
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = f'attachment; filename=diet_{diet_type}.pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=diet_plan.pdf'
     return response
 @app.route('/diet')
 def diet():
