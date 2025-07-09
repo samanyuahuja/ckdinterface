@@ -21,7 +21,37 @@ function chatbotReply(userInput) {
   return responses[randomIndex];
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.getElementById("toggleDiet");
+  const foodEatList = document.getElementById("foodEatList");
+  const downloadBtn = document.getElementById("downloadPdfBtn");
 
+  function updateFoodList() {
+    const list = toggle.checked ? nonvegList : vegList;
+    foodEatList.innerHTML = "";
+    list.forEach(item => {
+      const li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = item;
+      foodEatList.appendChild(li);
+    });
+  }
+
+  updateFoodList();
+
+  toggle.addEventListener("change", updateFoodList);
+
+  downloadBtn.addEventListener("click", () => {
+    const type = toggle.checked ? "nonveg" : "veg";
+    const url = new URL("/download-diet", window.location.origin);
+    const eatList = toggle.checked ? nonvegList : vegList;
+    eatList.forEach(val => url.searchParams.append("eat", val));
+    avoidList.forEach(val => url.searchParams.append("avoid", val));
+    top3.forEach(val => url.searchParams.append("top3", val));
+    url.searchParams.append("type", type);
+    window.location.href = url.toString();
+  });
+});
 // === 🌙 Dark Mode Toggle ===
 console.log("Dark mode script loaded");
 document.addEventListener("DOMContentLoaded", function () {
