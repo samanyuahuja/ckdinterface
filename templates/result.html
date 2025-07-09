@@ -53,8 +53,27 @@
     </div>
   </div>
 
-  <hr>
+  <!-- 🧬 Top 4 Feature Insights -->
+  <div class="row">
+    {% for insight in insights %}
+    <div class="col-md-6">
+      <div class="card mt-4 shadow-sm border-info">
+        <div class="card-header bg-info text-white">
+          🧬 {{ loop.index }}. Feature: <code>{{ insight.feature }}</code>
+        </div>
+        <div class="card-body">
+          <p><strong>🔍 Reason:</strong> {{ insight.reason }}</p>
+          <p><strong>💊 Cure:</strong> {{ insight.cure }}</p>
+          <p><strong>🏠 Remedy:</strong> {{ insight.remedy }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 
+  <hr class="my-5">
+
+  <!-- SHAP, PDP, LIME Graphs -->
   <div class="text-center">
     <h4 class="mb-3">SHAP Summary Plot (Feature Importance)</h4>
     <img src="{{ url_for('static', filename=shap_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="SHAP Summary">
@@ -64,12 +83,51 @@
     <h4 class="mb-3">Partial Dependence Plots (PDP)</h4>
     <img src="{{ url_for('static', filename=pdp_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="PDP Plot">
   </div>
+
   <div class="text-center">
     <h4 class="mb-3">LIME Explanation (Instance-Level)</h4>
     <img src="{{ url_for('static', filename=lime_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="LIME Plot">
   </div>
 
+  <!-- Optional Collapsible: How to Read Graphs -->
   <div class="text-center mt-4">
+    <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#interpretationGuide" role="button">
+      📘 How to Read the Graphs
+    </a>
+  </div>
+
+  <div class="collapse mt-4" id="interpretationGuide">
+    <div class="card border-secondary shadow-sm">
+      <div class="card-header bg-secondary text-white">
+        Understanding the Graphs
+      </div>
+      <div class="card-body text-start">
+        <h5><strong>📊 SHAP Summary Plot</strong></h5>
+        <ul>
+          <li><strong>X-axis:</strong> Impact on prediction (right = more CKD risk).</li>
+          <li><strong>Color:</strong> Red = high value, Blue = low value.</li>
+          <li>Dots = user cases; farther right = higher risk.</li>
+        </ul>
+        <hr>
+        <h5><strong>📊 LIME Plot</strong></h5>
+        <ul>
+          <li>Explains why this prediction was made.</li>
+          <li><strong>Green bars:</strong> Push toward CKD.</li>
+          <li><strong>Red bars:</strong> Push away from CKD.</li>
+        </ul>
+        <hr>
+        <h5><strong>📊 PDP Plot</strong></h5>
+        <ul>
+          <li><strong>X-axis:</strong> Feature value range.</li>
+          <li><strong>Y-axis:</strong> Model's predicted risk of CKD.</li>
+          <li>Shows how increasing a feature (e.g., creatinine) affects CKD probability.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Try Again Button -->
+  <div class="text-center mt-5">
     <a href="{{ url_for('index') }}" class="btn btn-outline-primary">🔄 Try Another Diagnosis</a>
   </div>
 </main>
