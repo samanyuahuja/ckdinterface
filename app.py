@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import make_response
+import pdfkit
 import pandas as pd
 import numpy as np
 import shap 
@@ -195,6 +197,39 @@ def get_feature_insight(feature):
         'cure': 'Consult a medical professional for treatment.',
         'remedy': 'Maintain a healthy lifestyle and seek expert advice.'
     })
+# 🔍 Define feature-specific diet sets
+def get_food_sets(feature):
+    db = {
+        "sc": (["Cauliflower", "Berries", "Garlic", "Cabbage"], ["Red meat", "Dairy", "Shellfish"]),
+        "pot": (["Apples", "Rice", "Cucumber", "Green beans"], ["Bananas", "Oranges", "Tomatoes"]),
+        "sod": (["Fresh fruits", "Rice", "Unsalted nuts"], ["Chips", "Pickles", "Canned soups"]),
+        "hemo": (["Spinach", "Lentils", "Pumpkin seeds", "Tofu"], ["Sugary drinks", "Alcohol"]),
+        "bu": (["Egg whites", "Apples", "Zucchini", "Cauliflower"], ["Red meat", "Beans", "Cheese"]),
+        "age": (["Cabbage", "Carrots", "Whole grains"], ["Processed snacks", "Cola", "Fast food"]),
+        "bp": (["Leafy greens", "Berries", "Oats"], ["Salted foods", "Fried snacks"]),
+        "al": (["Low-protein foods", "Fruits"], ["Red meat", "High-protein items"]),
+        "su": (["Low-sugar fruits", "Watermelon"], ["Sugary drinks", "Candy"]),
+        "bgr": (["Green vegetables", "Nuts", "Beans"], ["Sugary foods", "White bread"]),
+        "wbcc": (["Cucumber", "Spinach", "Apple"], ["Alcohol", "Spicy food"]),
+        "rbcc": (["Dates", "Raisins", "Iron-fortified cereal"], ["Fatty food"]),
+        "appet": (["Small frequent meals", "Broth", "Boiled vegetables"], ["Fried food"]),
+        "pe": (["Fiber-rich food", "Water"], ["Fatty spicy food"]),
+        "ane": (["Beetroot", "Pomegranate", "Iron-rich food"], ["Refined sugar"])
+    }
+    return db.get(feature, (["Whole grains", "Cabbage"], ["Salted snacks", "Processed food"]))
+# Combine diets from top 3 features
+def get_diet_plan_from_features(features):
+    eat_set, avoid_set = set(), set()
+    for feat in features:
+        eats, avoids = get_food_sets(feat)
+        eat_set.update(eats)
+        avoid_set.update(avoids)
+
+    eat_list = sorted(eat_set)
+    avoid_list = sorted(avoid_set)
+    veg_version = eat_list.copy()
+    nonveg_version = eat_list + ["Eggs", "Chicken", "Fish"]
+    return veg_version, nonveg_version, avoid_list
 @app.route('/diagnosis', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -247,6 +282,7 @@ def result():
     top_indices = np.argsort(shap_sum)[::-1][:4]
     top_features = [X_input_df.columns[i] for i in top_indices]
     insights = []
+    veg, nonveg, avoid = get_diet_plan_from_features(top_feats)
     
     for feat in top_features:
         info = get_feature_insight(feat)
@@ -300,7 +336,28 @@ def result():
                            shap_plot=shap_plot_path,
                            pdp_plot=pdp_plot_path,
                            lime_plot=lime_plot_path,
-                           insights=insights)
+                           insights=insights,
+                           diet_eat=veg,
+                           diet_nonveg=nonveg,
+                           diet_avoid=avoid,
+                           top3=top_feats)
+@app.route('/download-diet')
+def download_diet():
+    diet_type = request.args.get('type', 'veg')
+    eats = request.args.getlist('eat')
+    avoids = request.args.getlist('avoid')
+    top3 = request.args.getlist('top3')
 
+    html = render_template('diet_pdf.html',
+                           type=diet_type,
+                           eats=eats,
+                           avoids=avoids,
+                           top3=top3)
+
+    pdf = pdfkit.from_string(html, False)
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = f'attachment; filename=diet_{diet_type}.pdf'
+    return response
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
