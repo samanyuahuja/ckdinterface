@@ -78,12 +78,12 @@
     <div class="col-md-6">
       <div class="card mt-4 shadow-sm border-info">
         <div class="card-header bg-info text-white">
-          🧬 {{ loop.index }}. Feature: <code>{{ insight.feature }}</code>
+          {{ loop.index }}. Feature: <code>{{ insight.feature }}</code>
         </div>
         <div class="card-body">
-          <p><strong>🔍 Reason:</strong> {{ insight.reason }}</p>
-          <p><strong>💊 Cure:</strong> {{ insight.cure }}</p>
-          <p><strong>🏠 Remedy:</strong> {{ insight.remedy }}</p>
+          <p><strong>Reason:</strong> {{ insight.reason }}</p>
+          <p><strong>Cure:</strong> {{ insight.cure }}</p>
+          <p><strong>Remedy:</strong> {{ insight.remedy }}</p>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@
   <!-- Optional Collapsible: How to Read Graphs -->
   <div class="text-center mt-4">
     <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#interpretationGuide" role="button">
-      📘 How to Read the Graphs
+      How to Read the Graphs
     </a>
   </div>
 
@@ -121,21 +121,21 @@
         Understanding the Graphs
       </div>
       <div class="card-body text-start">
-        <h5><strong>📊 SHAP Summary Plot</strong></h5>
+        <h5><strong>SHAP Summary Plot</strong></h5>
         <ul>
           <li><strong>X-axis:</strong> Impact on prediction (right = more CKD risk).</li>
           <li><strong>Color:</strong> Red = high value, Blue = low value.</li>
           <li>Dots = user cases; farther right = higher risk.</li>
         </ul>
         <hr>
-        <h5><strong>📊 LIME Plot</strong></h5>
+        <h5><strong>LIME Plot</strong></h5>
         <ul>
           <li>Explains why this prediction was made.</li>
           <li><strong>Green bars:</strong> Push toward CKD.</li>
           <li><strong>Red bars:</strong> Push away from CKD.</li>
         </ul>
         <hr>
-        <h5><strong>📊 PDP Plot</strong></h5>
+        <h5><strong>PDP Plot</strong></h5>
         <ul>
           <li><strong>X-axis:</strong> Feature value range.</li>
           <li><strong>Y-axis:</strong> Model's predicted risk of CKD.</li>
@@ -147,10 +147,10 @@
 
   <!-- Try Again Button -->
   <div class="text-center mt-5">
-    <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">🔄 Try Another Diagnosis</a>
+    <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">Try Another Diagnosis</a>
   
     <a href="{{ url_for('diet', eat=diet_eat, nonveg=diet_nonveg, avoid=diet_avoid, top3=top3) }}" class="btn btn-success ms-2">
-      🍽 View AI Diet Plan
+      View AI Diet Plan
     </a>
   </div>
 
