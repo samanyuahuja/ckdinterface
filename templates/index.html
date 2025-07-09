@@ -43,7 +43,16 @@
   </section>
   
   <!-- 🌟 Modern Feature Grid Starts -->
-  <section class="hero-carousel">
+<div class="carousel-wrapper">
+  
+  <!-- Carousel Scroll Buttons -->
+  <div class="carousel-nav">
+    <button id="scrollLeft">‹</button>
+    <button id="scrollRight">›</button>
+  </div>
+
+  <!-- Your carousel section -->
+  <section class="hero-carousel" id="carousel">
     <div class="slide" onclick="location.href='/diagnosis'">
       <img src="/static/images/ckd.jpg" alt="CKD Diagnosis">
       <div class="slide-text">Get Your CKD Diagnosis</div>
@@ -61,6 +70,8 @@
       <div class="slide-text">Learn About CKD</div>
     </div>
   </section>
+
+</div>
     <!-- 🌟 Modern Feature Grid Ends -->
 </main>
 
