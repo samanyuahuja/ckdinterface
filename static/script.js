@@ -64,3 +64,48 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+  // Animate all cards
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card, index) => {
+    card.style.opacity = 0;
+    card.style.transition = 'opacity 0.6s ease-in-out, transform 0.6s ease';
+    card.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+      card.style.opacity = 1;
+      card.style.transform = 'translateY(0)';
+    }, 200 * index); // stagger animation
+  });
+
+  // Animate images when scrolled into view
+  const revealOnScroll = document.querySelectorAll('.img-fluid');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-in');
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  revealOnScroll.forEach(img => {
+    img.classList.add('hidden-before-scroll');
+    observer.observe(img);
+  });
+
+  // Smooth scroll to graph explanation (if link used)
+  const howToLink = document.querySelector('a[href="#interpretationGuide"]');
+  if (howToLink) {
+    howToLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector('#interpretationGuide');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        target.classList.add('show');
+      }
+    });
+  }
+});
