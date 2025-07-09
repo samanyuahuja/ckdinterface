@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import make_response
-import pdfkit
+
 import pandas as pd
 import numpy as np
 import shap 
@@ -10,9 +10,8 @@ import joblib
 import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
+from weasyprint import HTML
 
-config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')  # Adjust path for your OS
-pdfkit.from_file("diet_pdf.html", "output.pdf", configuration=config)
 
 app = Flask(__name__)
 app.secret_key = 'nephrosense_secret'
