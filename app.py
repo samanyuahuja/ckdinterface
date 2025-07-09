@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import make_response
-
+from flask import request
 import pandas as pd
 import numpy as np
 import shap 
@@ -358,16 +358,25 @@ def download_diet():
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "attachment; filename=diet_plan.pdf"
     return response
+
+
 @app.route('/diet')
 def diet():
-    # Mock or default features for now
-    sample_features = ["sc", "pot", "hemo"]  # You can change this to dynamic later
-    veg, nonveg, avoid = get_diet_plan_from_features(sample_features)
+    eat = request.args.getlist("eat")
+    nonveg = request.args.getlist("nonveg")
+    avoid = request.args.getlist("avoid")
+    top3 = request.args.getlist("top3")
+
+    if not eat or not avoid or not top3:
+        return render_template("diet.html", prediction_made=False)
+
     return render_template("diet.html",
-                           diet_eat=veg,
+                           prediction_made=True,
+                           diet_eat=eat,
                            diet_nonveg=nonveg,
                            diet_avoid=avoid,
-                           top3=sample_features)
+                           top3=top3)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
