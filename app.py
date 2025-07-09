@@ -285,7 +285,7 @@ def result():
     top_indices = np.argsort(shap_sum)[::-1][:4]
     top_features = [X_input_df.columns[i] for i in top_indices]
     insights = []
-    veg, nonveg, avoid = get_diet_plan_from_features(top_feats)
+    veg, nonveg, avoid = get_diet_plan_from_features(top_features)
     
     for feat in top_features:
         info = get_feature_insight(feat)
