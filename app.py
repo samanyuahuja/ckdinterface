@@ -346,6 +346,7 @@ def result():
 
 
 
+
 @app.route('/download-diet')
 def download_diet():
     eat = request.args.getlist('eat')
@@ -355,7 +356,6 @@ def download_diet():
 
     html = render_template('diet_pdf.html', eat=eat, avoid=avoid, top3=top3, diet_type=diet_type)
 
-    # Convert HTML to PDF using xhtml2pdf
     result = BytesIO()
     pdf = pisa.CreatePDF(BytesIO(html.encode("utf-8")), dest=result)
 
