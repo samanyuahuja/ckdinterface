@@ -192,61 +192,61 @@ a:hover {
 .fade-in {
   opacity: 1 !important;
   transform: translateY(0) !important;
-.cornell-style-section {
+.cornell-carousel-section {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 10px;
+  background-color: #f8f8f8;
+}
+
+.carousel-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-  padding: 20px;
+  gap: 20px;
+  min-width: fit-content;
+  width: max-content;
+  scroll-snap-align: start;
 }
 
 .cornell-card {
   position: relative;
-  cursor: pointer;
+  min-width: 300px;
+  flex: 0 0 auto;
+  border-radius: 12px;
   overflow: hidden;
-  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   transition: transform 0.3s ease;
 }
 
 .cornell-card img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 200px;
+  object-fit: cover;
   transition: transform 0.4s ease;
+  display: block;
 }
 
 .cornell-card:hover img {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .cornell-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
+  padding: 14px 18px;
   width: 100%;
-  padding: 18px 20px;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   color: #fff;
+  font-size: 1.1rem;
   font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1.4;
   font-family: 'Segoe UI', sans-serif;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
   box-sizing: border-box;
-}
-@media (min-width: 768px) {
-  .cornell-style-section {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .cornell-card {
-    width: 48%;
-  }
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
-@media (min-width: 1200px) {
-  .cornell-card {
-    width: 49%;
-  }
+/* Scrollbar hidden on WebKit */
+.cornell-carousel-section::-webkit-scrollbar {
+  display: none;
 }
