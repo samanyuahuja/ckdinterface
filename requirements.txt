@@ -10,4 +10,4 @@ joblib==1.2.0
 gunicorn==21.2.0
 ipython==8.18.1
 xhtml2pdf==0.2.10
-
+reportlab==3.6.13
