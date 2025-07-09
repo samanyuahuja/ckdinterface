@@ -210,6 +210,15 @@ def get_feature_insight(feature):
         'cure': 'Consult a medical professional for treatment.',
         'remedy': 'Maintain a healthy lifestyle and seek expert advice.'
     })
+def assess_risk(probability):
+    if probability < 0.3:
+        return ("Low Risk", "green")
+    elif probability < 0.6:
+        return ("Moderate Risk", "orange")
+    elif probability < 0.85:
+        return ("High Risk", "orangered")
+    else:
+        return ("Very High Risk", "red")
 # 🔍 Define feature-specific diet sets
 def get_food_sets(feature):
     db = {
@@ -285,22 +294,11 @@ def result():
     proba = model.predict_proba(X_scaled)[:,1]
     prediction = model.predict(X_scaled)
     no_ckd_proba = 1 - proba[0]
+    risk_level_text, risk_color = assess_risk(proba[0])
     # SHAP Analysis
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X_scaled)
-        # Risk level classifier based on probability
-    if proba[0] >= 0.85:
-        risk_level = "Very Risky"
-        risk_color = "text-danger"
-    elif proba[0] >= 0.6:
-        risk_level = "Risky"
-        risk_color = "text-warning"
-    elif proba[0] >= 0.4:
-        risk_level = "Mildly Risky"
-        risk_color = "text-info"
-    else:
-        risk_level = "Not Risky"
-        risk_color = "text-success"
+
     # Top 4 SHAP features
     shap_abs = np.abs(shap_values[1])  # assuming class 1 is CKD
     shap_sum = shap_abs.sum(axis=0)
