@@ -181,3 +181,15 @@ a:hover {
   color: #0072ce; /* slight highlight on hover */
   text-decoration: underline;
 }
+/* Hidden image before animation */
+.hidden-before-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Triggered by IntersectionObserver */
+.fade-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
