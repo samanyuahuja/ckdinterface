@@ -26,9 +26,7 @@ def about():
 def chatbot():
     return render_template("chatbot.html")
 
-@app.route('/diet')
-def diet():
-    return render_template("diet.html")
+
 
 @app.route('/language')
 def language():
@@ -336,11 +334,7 @@ def result():
                            shap_plot=shap_plot_path,
                            pdp_plot=pdp_plot_path,
                            lime_plot=lime_plot_path,
-                           insights=insights,
-                           diet_eat=veg,
-                           diet_nonveg=nonveg,
-                           diet_avoid=avoid,
-                           top3=top_feats)
+                           insights=insights)
 @app.route('/download-diet')
 def download_diet():
     diet_type = request.args.get('type', 'veg')
@@ -359,5 +353,16 @@ def download_diet():
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = f'attachment; filename=diet_{diet_type}.pdf'
     return response
+@app.route('/diet')
+def diet():
+    # Mock or default features for now
+    sample_features = ["sc", "pot", "hemo"]  # You can change this to dynamic later
+    veg, nonveg, avoid = get_diet_plan_from_features(sample_features)
+    return render_template("diet.html",
+                           diet_eat=veg,
+                           diet_nonveg=nonveg,
+                           diet_avoid=avoid,
+                           top3=sample_features)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
