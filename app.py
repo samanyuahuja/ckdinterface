@@ -10,7 +10,10 @@ import joblib
 import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
-from weasyprint import HTML
+from xhtml2pdf import pisa
+
+from io import BytesIO
+from flask import render_template
 
 
 app = Flask(__name__)
@@ -338,25 +341,26 @@ def result():
                            lime_plot=lime_plot_path,
                            insights=insights)
 
+
 @app.route('/download-diet')
 def download_diet():
-    veg_foods = request.args.getlist('eat')
-    avoid_foods = request.args.getlist('avoid')
+    eat = request.args.getlist('eat')
+    avoid = request.args.getlist('avoid')
     top3 = request.args.getlist('top3')
     diet_type = request.args.get('type', 'veg')
 
-    rendered_html = render_template("diet_pdf.html",
-                                    veg_foods=veg_foods,
-                                    avoid_foods=avoid_foods,
-                                    top3=top3,
-                                    diet_type=diet_type)
+    html = render_template('diet_pdf.html', eat=eat, avoid=avoid, top3=top3, diet_type=diet_type)
 
-    pdf = HTML(string=rendered_html).write_pdf()
+    result = BytesIO()
+    pdf = pisa.CreatePDF(BytesIO(html.encode("utf-8")), dest=result)
 
-    response = make_response(pdf)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'attachment; filename=diet_plan.pdf'
-    return response
+    if not pdf.err:
+        response = make_response(result.getvalue())
+        response.headers["Content-Type"] = "application/pdf"
+        response.headers["Content-Disposition"] = "attachment; filename=diet_plan.pdf"
+        return response
+    else:
+        return "Failed to generate PDF", 500
 @app.route('/diet')
 def diet():
     # Mock or default features for now
