@@ -86,6 +86,17 @@ def preprocess_input(df):
             df[col] = 0
 
     return df[final_features]
+symptom_map = {
+    "Swelling": "Pedal Edema (pe)",
+    "Fatigue": "Hemoglobin (hemo)",
+    "High Blood Pressure": "Blood Pressure (bp)",
+    "Nausea or Vomiting": "Appetite (appet)",
+    "Foamy Urine": "Albumin (al)",
+    "Frequent Urination at Night": "Blood Glucose Random (bgr)",
+    "Pale Skin": "Anemia (ane)",
+    "Shortness of Breath": "Hemoglobin (hemo)",
+    "Back Pain": "Red Blood Cells (rbc)",
+}
 feature_insights = {
     'age': {
         'reason': 'Older age increases the risk of chronic diseases, including kidney issues.',
@@ -277,7 +288,19 @@ def result():
     # SHAP Analysis
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X_scaled)
-    
+        # Risk level classifier based on probability
+    if proba[0] >= 0.85:
+        risk_level = "Very Risky"
+        risk_color = "text-danger"
+    elif proba[0] >= 0.6:
+        risk_level = "Risky"
+        risk_color = "text-warning"
+    elif proba[0] >= 0.4:
+        risk_level = "Mildly Risky"
+        risk_color = "text-info"
+    else:
+        risk_level = "Not Risky"
+        risk_color = "text-success"
     # Top 4 SHAP features
     shap_abs = np.abs(shap_values[1])  # assuming class 1 is CKD
     shap_sum = shap_abs.sum(axis=0)
@@ -331,6 +354,7 @@ def result():
     plt.tight_layout()
     plt.savefig(lime_plot_path)
     plt.close()
+    
     return render_template("result.html",
                            prediction=prediction[0],
                            proba=round(proba[0],3),
@@ -342,7 +366,10 @@ def result():
                            diet_eat=veg,
                            diet_nonveg=nonveg,
                            diet_avoid=avoid,
-                           top3=top_features)
+                           top3=top_features
+                           risk_level=risk_level,
+                           risk_color=risk_color,
+                           symptom_map=symptom_map)
 
 
 
