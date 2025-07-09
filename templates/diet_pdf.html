@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Diet Plan</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #2d6a4f; }
+    h3 { color: #1d3557; }
+    ul { margin-left: 20px; }
+    .section { margin-bottom: 30px; }
+  </style>
+</head>
+<body>
+  <h2>🌿 Personalized CKD Diet Plan ({{ type|capitalize }})</h2>
+  <p><strong>Based on top influencing features:</strong> {{ top3|join(', ') }}</p>
+
+  <div class="section">
+    <h3>✅ Foods to Eat</h3>
+    <ul>
+      {% for food in eats %}
+        <li>{{ food }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>🚫 Foods to Avoid</h3>
+    <ul>
+      {% for food in avoids %}
+        <li>{{ food }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <p><em>Note: This plan is AI-generated based on input features and does not replace medical advice.</em></p>
+</body>
+</html>
 
