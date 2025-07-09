@@ -11,6 +11,9 @@ import os
 import uuid
 from sklearn.inspection import PartialDependenceDisplay
 
+config = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')  # Adjust path for your OS
+pdfkit.from_file("diet_pdf.html", "output.pdf", configuration=config)
+
 app = Flask(__name__)
 app.secret_key = 'nephrosense_secret'
 
