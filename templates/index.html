@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Slick Carousel CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -40,25 +43,22 @@
   </section>
   
   <!-- 🌟 Modern Feature Grid Starts -->
-  <section class="cornell-style-section">
-    <div class="cornell-card" onclick="location.href='/diagnosis'">
-      <img src="/static/images/ckd.jpg" alt="Get Your CKD Diagnosis" />
-      <div class="cornell-overlay">Get Your CKD Diagnosis</div>
+  <section class="hero-carousel">
+    <div class="slide" onclick="location.href='/diagnosis'">
+      <img src="/static/images/ckd.jpg" alt="CKD Diagnosis">
+      <div class="slide-text">Get Your CKD Diagnosis</div>
     </div>
-  
-    <div class="cornell-card" onclick="location.href='/diet'">
-      <img src="/static/images/dietplan.jpg" alt="Explore AI Diet Plans" />
-      <div class="cornell-overlay">Explore AI Diet Plans</div>
+    <div class="slide" onclick="location.href='/diet'">
+      <img src="/static/images/dietplan.jpg" alt="AI Diet Plan">
+      <div class="slide-text">Explore AI Diet Plans</div>
     </div>
-  
-    <div class="cornell-card" onclick="location.href='/chatbot'">
-      <img src="/static/images/chatbot.jpg" alt="Chat with our CKD Assistant" />
-      <div class="cornell-overlay">Chat with our CKD Assistant</div>
+    <div class="slide" onclick="location.href='/chatbot'">
+      <img src="/static/images/chatbot.jpg" alt="Chatbot">
+      <div class="slide-text">Chat with our CKD Assistant</div>
     </div>
-  
-    <div class="cornell-card" onclick="location.href='/about'">
-      <img src="/static/images/diagnos.jpg" alt="Learn About CKD" />
-      <div class="cornell-overlay">Learn About CKD</div>
+    <div class="slide" onclick="location.href='/about'">
+      <img src="/static/images/diagnos.jpg" alt="About CKD">
+      <div class="slide-text">Learn About CKD</div>
     </div>
   </section>
     <!-- 🌟 Modern Feature Grid Ends -->
@@ -67,7 +67,9 @@
 <footer class="bg-light text-center py-3 mt-5">
   <p class="mb-0">&copy; 2025 NephroCare. All rights reserved.</p>
 </footer>
-
+<!-- jQuery + Slick Carousel JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
