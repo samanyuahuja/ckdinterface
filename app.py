@@ -366,7 +366,7 @@ def result():
                            diet_eat=veg,
                            diet_nonveg=nonveg,
                            diet_avoid=avoid,
-                           top3=top_features
+                           top3=top_features,
                            risk_level=risk_level,
                            risk_color=risk_color,
                            symptom_map=symptom_map)
