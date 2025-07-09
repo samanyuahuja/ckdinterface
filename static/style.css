@@ -193,3 +193,48 @@ a:hover {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 40px;
+  font-family: 'Georgia', serif;
+}
+
+.feature-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.02);
+}
+
+.feature-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(70%);
+  transition: filter 0.3s ease;
+}
+
+.feature-card:hover img {
+  filter: brightness(50%);
+}
+
+.feature-text {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  width: 100%;
+  text-shadow: 1px 1px 4px black;
+}
