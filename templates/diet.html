@@ -34,11 +34,44 @@
 </header>
 
 <main class="container mt-4">
-  <section>
-    <h2 class="border-bottom pb-2">AI-Generated Diet Plans</h2>
-    <p>Get customized meal recommendations that support your kidney health. Coming soon: download PDF diet charts based on your diagnosis.</p>
-    <button class="btn btn-success">Generate Diet Plan</button>
-  </section>
+  <hr class="my-4">
+  
+  <div class="text-center">
+    <h4 class="mb-3 animate__animated animate__fadeInUp">🧠 AI-Based Diet Recommendations</h4>
+  
+    <p class="text-muted mb-2">Based on top features: <strong>{{ top3 | join(', ') }}</strong></p>
+  
+    <div class="form-check form-switch d-inline-block mb-3">
+      <input class="form-check-input" type="checkbox" id="toggleDiet" checked>
+      <label class="form-check-label" for="toggleDiet">Include Non-Veg Options</label>
+    </div>
+  
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card p-3 shadow animate__animated animate__fadeInLeft">
+          <h5 class="text-success">✅ Foods to Eat</h5>
+          <ul id="foodEatList" class="list-group list-group-flush">
+            {% for food in diet_nonveg %}
+              <li class="list-group-item">{{ food }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card p-3 shadow animate__animated animate__fadeInRight">
+          <h5 class="text-danger">🚫 Foods to Avoid</h5>
+          <ul class="list-group list-group-flush">
+            {% for food in diet_avoid %}
+              <li class="list-group-item">{{ food }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <a id="downloadPdfBtn" class="btn btn-success mt-4" href="#">📥 Download Diet Plan (PDF)</a>
+  </div>
+
 </main>
 
 <footer class="bg-light text-center py-3 mt-5">
