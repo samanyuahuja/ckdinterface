@@ -82,7 +82,119 @@ def preprocess_input(df):
             df[col] = 0
 
     return df[final_features]
-
+feature_insights = {
+    'age': {
+        'reason': 'Older age increases the risk of chronic diseases, including kidney issues.',
+        'cure': 'While age itself isn’t curable, monitoring kidney function is key in elderly individuals.',
+        'remedy': 'Regular checkups, hydration, and a kidney-friendly diet can help preserve function.'
+    },
+    'bp': {
+        'reason': 'High blood pressure can damage kidney blood vessels over time.',
+        'cure': 'Use antihypertensive medications and lifestyle management.',
+        'remedy': 'Limit salt intake, manage stress, and maintain a healthy weight.'
+    },
+    'al': {
+        'reason': 'Albumin in urine signals damaged kidney filtering units (glomeruli).',
+        'cure': 'Treat underlying causes like diabetes or hypertension with proper medication.',
+        'remedy': 'Limit protein intake and follow a kidney-safe diet.'
+    },
+    'su': {
+        'reason': 'Sugar in urine may indicate uncontrolled diabetes, a major CKD risk factor.',
+        'cure': 'Manage blood sugar through insulin or oral medication.',
+        'remedy': 'Cut down sugar, monitor glucose, and eat low-glycemic foods.'
+    },
+    'rbc': {
+        'reason': 'Red blood cells in urine can point to kidney inflammation or damage.',
+        'cure': 'Identify and treat the underlying cause such as infection or trauma.',
+        'remedy': 'Drink adequate water and avoid high-impact physical activities temporarily.'
+    },
+    'pc': {
+        'reason': 'Presence of pus cells may suggest urinary tract infection or inflammation.',
+        'cure': 'Antibiotic treatment based on infection type is necessary.',
+        'remedy': 'Stay hydrated and maintain good hygiene.'
+    },
+    'bgr': {
+        'reason': 'High blood glucose is a hallmark of diabetes, which harms kidneys over time.',
+        'cure': 'Insulin or oral medication to manage blood sugar.',
+        'remedy': 'Avoid sweets, white rice, and soda. Exercise daily.'
+    },
+    'bu': {
+        'reason': 'Elevated blood urea suggests reduced kidney filtering efficiency.',
+        'cure': 'Manage underlying kidney issues and limit protein intake.',
+        'remedy': 'Eat less red meat and processed protein. Stay hydrated.'
+    },
+    'sc': {
+        'reason': 'High serum creatinine indicates decreased kidney function.',
+        'cure': 'Depends on severity: lifestyle change or dialysis in advanced stages.',
+        'remedy': 'Avoid red meat, exercise moderately, and drink water.'
+    },
+    'sod': {
+        'reason': 'Abnormal sodium can cause blood pressure and fluid balance issues.',
+        'cure': 'Adjust sodium intake and monitor electrolyte levels regularly.',
+        'remedy': 'Limit processed and salty foods.'
+    },
+    'pot': {
+        'reason': 'High potassium levels (hyperkalemia) may result from poor kidney clearance.',
+        'cure': 'Use potassium binders and adjust medications as advised.',
+        'remedy': 'Avoid high-potassium foods like bananas and potatoes.'
+    },
+    'hemo': {
+        'reason': 'Low hemoglobin often signals anemia in CKD patients.',
+        'cure': 'Use iron, B12, or erythropoietin based on deficiency.',
+        'remedy': 'Eat iron-rich foods like spinach, lentils, or fortified cereals.'
+    },
+    'wbcc': {
+        'reason': 'High white blood cell count may mean infection or inflammation.',
+        'cure': 'Use antibiotics if bacterial infection is confirmed.',
+        'remedy': 'Improve immunity with rest, hydration, and hygiene.'
+    },
+    'htn': {
+        'reason': 'Hypertension stresses kidneys, accelerating CKD progression.',
+        'cure': 'Antihypertensive drugs and lifestyle therapy are key.',
+        'remedy': 'Low-salt diet, daily walks, and stress control.'
+    },
+    'dm': {
+        'reason': 'Diabetes is a leading cause of kidney disease due to sugar damage.',
+        'cure': 'Glycemic control using insulin or drugs like metformin.',
+        'remedy': 'Low-carb diet, regular exercise, and glucose monitoring.'
+    },
+    'appet': {
+        'reason': 'Poor appetite is common in CKD due to toxin buildup.',
+        'cure': 'Treat nausea, acidosis, and anemia to improve appetite.',
+        'remedy': 'Eat small frequent meals and avoid salty/fatty foods.'
+    },
+    'pe': {
+        'reason': 'Pedal edema (swelling in legs) indicates fluid retention due to CKD.',
+        'cure': 'Use diuretics and restrict fluid and salt intake.',
+        'remedy': 'Elevate legs, reduce salt, and monitor body weight daily.'
+    },
+    'ane': {
+        'reason': 'Anemia occurs when kidneys fail to produce enough erythropoietin.',
+        'cure': 'Iron therapy, ESA injections, and correcting deficiencies.',
+        'remedy': 'Consume iron and B12-rich foods like eggs and greens.'
+    },
+    'bun_sc_ratio': {
+        'reason': 'A high BUN/Creatinine ratio can indicate dehydration or acute kidney issues.',
+        'cure': 'Treat dehydration or underlying renal cause.',
+        'remedy': 'Drink water regularly and avoid excess protein temporarily.'
+    },
+    'high_creatinine': {
+        'reason': 'This binary feature flags dangerously high creatinine levels.',
+        'cure': 'Advanced treatment may include dialysis.',
+        'remedy': 'Consult a nephrologist immediately and monitor GFR.'
+    },
+    'hemo_bu': {
+        'reason': 'This interaction shows combined effect of low hemoglobin and high urea — a risk signal.',
+        'cure': 'Treat anemia and reduce urea levels with meds and diet.',
+        'remedy': 'Focus on kidney-safe, iron-rich, low-protein meals.'
+    }
+}
+def get_feature_insight(feature):
+    return feature_insights.get(feature, {
+        'reason': 'No interpretation available for this feature.',
+        'cure': 'Consult a medical professional for treatment.',
+        'remedy': 'Maintain a healthy lifestyle and seek expert advice.'
+    })
 @app.route('/diagnosis', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -125,6 +237,21 @@ def result():
     proba = model.predict_proba(X_scaled)[:,1]
     prediction = model.predict(X_scaled)
     no_ckd_proba = 1 - proba[0]
+    # SHAP Analysis
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer.shap_values(X_scaled)
+    
+    # Top 4 SHAP features
+    shap_abs = np.abs(shap_values[1])  # assuming class 1 is CKD
+    shap_sum = shap_abs.sum(axis=0)
+    top_indices = np.argsort(shap_sum)[::-1][:4]
+    top_features = [X_input_df.columns[i] for i in top_indices]
+    insights = []
+    
+    for feat in top_features:
+        info = get_feature_insight(feat)
+        info["feature"] = feat
+        insights.append(info)
 
     # SHAP plot
     explainer = shap.TreeExplainer(model)
@@ -172,7 +299,8 @@ def result():
                            no_ckd_proba=round(no_ckd_proba,3),
                            shap_plot=shap_plot_path,
                            pdp_plot=pdp_plot_path,
-                           lime_plot=lime_plot_path)
+                           lime_plot=lime_plot_path,
+                           insights=insights)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
