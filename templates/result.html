@@ -52,7 +52,26 @@
       </div>
     </div>
   </div>
-
+  <div class="card mb-4">
+  <div class="alert {{ risk_class }} fw-bold fs-5">
+    Risk Assessment: {{ risk_label }}
+  </div>
+  <div class="card-header" data-bs-toggle="collapse" href="#symptomChecker" style="cursor:pointer;">
+    Not sure what your numbers mean? Check symptoms
+  </div>
+    <div id="symptomChecker" class="collapse">
+      <div class="card-body">
+        <ul class="list-group list-group-flush small">
+          <li class="list-group-item"><strong>Swelling</strong>? → Check <code>pe</code> (Pedal Edema)</li>
+          <li class="list-group-item"><strong>Fatigue</strong>? → Check <code>hemo</code> (Hemoglobin)</li>
+          <li class="list-group-item"><strong>High sugar</strong>? → Check <code>dm</code> (Diabetes Mellitus)</li>
+          <li class="list-group-item"><strong>High blood pressure</strong>? → Check <code>bp</code> (Blood Pressure)</li>
+          <li class="list-group-item"><strong>Pale skin</strong>? → Check <code>rbc</code> / <code>hemo</code></li>
+          <li class="list-group-item"><strong>Loss of appetite</strong>? → Check <code>appet</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <!-- 🧬 Top 4 Feature Insights -->
   <div class="row">
     {% for insight in insights %}
