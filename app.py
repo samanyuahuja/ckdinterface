@@ -212,13 +212,13 @@ def get_feature_insight(feature):
     })
 def assess_risk(probability):
     if probability < 0.3:
-        return ("Low Risk", "green")
+        return ("Low Risk", "success")        # green
     elif probability < 0.6:
-        return ("Moderate Risk", "orange")
+        return ("Moderate Risk", "warning")   # orange
     elif probability < 0.85:
-        return ("High Risk", "orangered")
+        return ("High Risk", "danger")        # red-orange
     else:
-        return ("Very High Risk", "red")
+        return ("Very High Risk", "danger")   # red
 # 🔍 Define feature-specific diet sets
 def get_food_sets(feature):
     db = {
@@ -365,8 +365,8 @@ def result():
                            diet_nonveg=nonveg,
                            diet_avoid=avoid,
                            top3=top_features,
-                           risk_level=risk_level_text,
-                           risk_color=risk_color,
+                           risk_label=risk_level_text,
+                           risk_class=f"alert-{risk_color}",
                            symptom_map=symptom_map)
 
 
