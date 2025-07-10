@@ -62,47 +62,29 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Medilab</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="#hero" class="active">Home<br></a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#departments">Departments</a></li>
-            <li><a href="#doctors">Doctors</a></li>
-            <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-        <a class="cta-btn d-none d-sm-block" href="#appointment">Make an Appointment</a>
-
-      </div>
-
-    </div>
-
-  </header>
-
-  <main class="main">
+          <h1 class="sitename">NephroCare</h1>
+          </a>
+          
+          <nav id="navmenu" class="navmenu">
+            <ul>
+              <l i><a href="{{ url_for('home') }}" class="active">Home</a></li>
+              <li><a href="{{ url_for('about') }}">About CKD</a></li>
+              <li><a href="{{ url_for('index') }}">Your Diagnosis</a></li>
+              <li><a href="{{ url_for('diet') }}">Diet Plans</a></li>
+              <li><a href="{{ url_for('chatbot') }}">Chatbot</a></li>
+              <li><a href="{{ url_for('language') }}">Language</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </nav>
+          
+          <a class="cta-btn d-none d-sm-block" href="{{ url_for('index') }}">Get Started</a>
+          
+          </div> <!-- closes .container -->
+          </div> <!-- closes .branding -->
+          </header>
+          
+          <main class="main">
+          
 
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
@@ -112,17 +94,16 @@
       <div class="container position-relative">
 
         <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-          <h2>WELCOME TO MEDILAB</h2>
-          <p>We are team of talented designers making websites with Bootstrap</p>
+          <h2>WELCOME TO NEPHROCARE</h2>
+          <p>Your trusted partner in understanding and managing Chronic Kidney Disease</p>
         </div><!-- End Welcome -->
 
         <div class="content row gy-4">
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-              <h3>Why Choose Medilab?</h3>
+              <h3>Why Choose NephroCare?</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
+              NephroCare helps assess your risk of CKD using AI, provides expert guidance, and offers diet and lifestyle tools — all in one platform.
               </p>
               <div class="text-center">
                 <a href="#about" class="more-btn"><span>Learn More</span> <i class="bi bi-chevron-right"></i></a>
@@ -133,28 +114,28 @@
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="d-flex flex-column justify-content-center">
               <div class="row gy-4">
-
+    
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="300">
                     <i class="bi bi-clipboard-data"></i>
-                    <h4>Corporis voluptates officia eiusmod</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                    <h4>AI-Based Risk Prediction</h4>
+                    <p>Use our advanced model to assess your risk of Chronic Kidney Disease.</p>
                   </div>
-                </div><!-- End Icon Box -->
-
+                </div>
+    
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
-                    <i class="bi bi-gem"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                    <i class="bi bi-egg-fried"></i>
+                    <h4>Personalized Diet Plans</h4>
+                    <p>Get dynamic, CKD-safe meal suggestions based on your health inputs.</p>
                   </div>
-                </div><!-- End Icon Box -->
-
+                </div>
+    
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
-                    <i class="bi bi-inboxes"></i>
-                    <h4>Labore consequatur incidid dolore</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                    <i class="bi bi-robot"></i>
+                    <h4>24/7 CKD Chat Assistant</h4>
+                    <p>Have questions? Chat with our AI for personalized CKD guidance.</p>
                   </div>
                 </div><!-- End Icon Box -->
 
