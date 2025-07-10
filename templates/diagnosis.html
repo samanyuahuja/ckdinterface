@@ -119,147 +119,165 @@
     </div>
   </div>
 
-  <form id="diagnosisFormManual" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data" data-aos="fade-up">
-    <div class="card p-4">
-      <h5 class="mb-4">Manual Input</h5>
-      
-      <div class="row g-4">
-        <div class="col-md-4">
-          <label class="form-label">Age</label>
-          <input type="number" class="form-control" name="age" value="45" min="0" max="120" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Blood Pressure (bp)</label>
-          <input type="number" class="form-control" name="bp" value="80" min="0" max="200" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Specific Gravity (sg)</label>
-          <select class="form-select" name="sg">
-            <option value="1.005">1.005</option>
-            <option value="1.010">1.010</option>
-            <option value="1.015">1.015</option>
-            <option value="1.020">1.020</option>
-            <option value="1.025">1.025</option>
-          </select>
-        </div>
+  <form id="diagnosisForm" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
+  <!-- UPLOAD FIELD -->
+    <div class="mb-4">
+      <label for="csv_file">Upload CSV (optional)</label>
+      <input type="file" class="form-control" name="csv_file" />
+    </div>
   
-        <div class="col-md-4">
-          <label class="form-label">Albumin (al)</label>
-          <input type="number" class="form-control" name="al" value="1" min="0" max="5">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Sugar (su)</label>
-          <input type="number" class="form-control" name="su" value="0" min="0" max="5">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Red Blood Cells (rbc)</label>
-          <select class="form-select" name="rbc">
-            <option value="normal">Normal</option>
-            <option value="abnormal">Abnormal</option>
-          </select>
-        </div>
-  
-        <div class="col-md-4">
-          <label class="form-label">Pus Cell (pc)</label>
-          <select class="form-select" name="pc">
-            <option value="normal">Normal</option>
-            <option value="abnormal">Abnormal</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Pus Cell Clumps (pcc)</label>
-          <select class="form-select" name="pcc">
-            <option value="present">Present</option>
-            <option value="notpresent">Not Present</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Blood Glucose Random (bgr)</label>
-          <input type="number" class="form-control" name="bgr" value="100" min="0" max="500">
-        </div>
-  
-        <div class="col-md-4">
-          <label class="form-label">Blood Urea (bu)</label>
-          <input type="number" class="form-control" name="bu" value="30" min="0" max="200">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Serum Creatinine (sc)</label>
-          <input type="number" class="form-control" name="sc" value="1.2" step="0.1" min="0" max="15">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Sodium (sod)</label>
-          <input type="number" class="form-control" name="sod" value="140" min="100" max="200">
-        </div>
-  
-        <div class="col-md-4">
-          <label class="form-label">Potassium (pot)</label>
-          <input type="number" class="form-control" name="pot" value="4.5" step="0.1" min="2" max="8">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Hemoglobin (hemo)</label>
-          <input type="number" class="form-control" name="hemo" value="12.0" step="0.1" min="5" max="20">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">White Blood Cell Count (wbcc)</label>
-          <input type="number" class="form-control" name="wbcc" value="8000" min="1000" max="25000">
-        </div>
-  
-        <div class="col-md-4">
-          <label class="form-label">Red Blood Cell Count (rbcc)</label>
-          <input type="number" class="form-control" name="rbcc" value="5.0" step="0.1" min="2" max="8">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Hypertension (htn)</label>
-          <select class="form-select" name="htn">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Diabetes Mellitus (dm)</label>
-          <select class="form-select" name="dm">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-  
-        <div class="col-md-4">
-          <label class="form-label">Appetite (appet)</label>
-          <select class="form-select" name="appet">
-            <option value="good">Good</option>
-            <option value="poor">Poor</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Pedal Edema (pe)</label>
-          <select class="form-select" name="pe">
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">BUN / Creatinine Ratio (bun_sc_ratio)</label>
-          <input type="number" class="form-control" name="bun_sc_ratio" value="25" min="0" max="100">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">High Creatinine Flag (high_creatinine)</label>
-          <select class="form-select" name="high_creatinine">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Hemoglobin × Blood Urea (hemo_bu)</label>
-          <input type="number" class="form-control" name="hemo_bu" value="360" min="0" max="1000">
-        </div>
+    <!-- MANUAL INPUT FIELDS -->
+    <!-- age, bp, al, su, rbc, pc, ba, bgr, bu, sc, sod, pot, hemo, wbcc, rbcc,
+         htn, dm, appet, pe, ane, bun_sc_ratio, high_creatinine, hemo_bu -->
+    <div class="row g-4">
+      <!-- Age -->
+      <div class="col-md-4">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" name="age" class="form-control" min="0" max="120" required>
       </div>
-  
-      <div class="text-center mt-4">
-        <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
+      <!-- Blood Pressure -->
+      <div class="col-md-4">
+        <label for="bp" class="form-label">Blood Pressure</label>
+        <input type="number" name="bp" class="form-control" min="0" max="200" required>
+      </div>
+      <!-- Albumin -->
+      <div class="col-md-4">
+        <label for="al" class="form-label">Albumin</label>
+        <input type="number" name="al" class="form-control" min="0" max="5">
+      </div>
+      <!-- Sugar -->
+      <div class="col-md-4">
+        <label for="su" class="form-label">Sugar</label>
+        <input type="number" name="su" class="form-control" min="0" max="5">
+      </div>
+      <!-- Red Blood Cells -->
+      <div class="col-md-4">
+        <label for="rbc" class="form-label">Red Blood Cells</label>
+        <select name="rbc" class="form-select">
+          <option value="normal">Normal</option>
+          <option value="abnormal">Abnormal</option>
+        </select>
+      </div>
+      <!-- Pus Cell -->
+      <div class="col-md-4">
+        <label for="pc" class="form-label">Pus Cell</label>
+        <select name="pc" class="form-select">
+          <option value="normal">Normal</option>
+          <option value="abnormal">Abnormal</option>
+        </select>
+      </div>
+      <!-- Pus Cell Clumps -->
+      <div class="col-md-4">
+        <label for="ba" class="form-label">Pus Cell Clumps</label>
+        <select name="ba" class="form-select">
+          <option value="notpresent">Not Present</option>
+          <option value="present">Present</option>
+        </select>
+      </div>
+      <!-- Blood Glucose Random -->
+      <div class="col-md-4">
+        <label for="bgr" class="form-label">Blood Glucose Random</label>
+        <input type="number" name="bgr" class="form-control" min="0" max="500">
+      </div>
+      <!-- Blood Urea -->
+      <div class="col-md-4">
+        <label for="bu" class="form-label">Blood Urea</label>
+        <input type="number" name="bu" class="form-control" min="0" max="200">
+      </div>
+      <!-- Serum Creatinine -->
+      <div class="col-md-4">
+        <label for="sc" class="form-label">Serum Creatinine</label>
+        <input type="number" name="sc" class="form-control" step="0.1" min="0" max="15">
+      </div>
+      <!-- Sodium -->
+      <div class="col-md-4">
+        <label for="sod" class="form-label">Sodium</label>
+        <input type="number" name="sod" class="form-control" min="100" max="200">
+      </div>
+      <!-- Potassium -->
+      <div class="col-md-4">
+        <label for="pot" class="form-label">Potassium</label>
+        <input type="number" name="pot" class="form-control" step="0.1" min="2" max="8">
+      </div>
+      <!-- Hemoglobin -->
+      <div class="col-md-4">
+        <label for="hemo" class="form-label">Hemoglobin</label>
+        <input type="number" name="hemo" class="form-control" step="0.1" min="5" max="20">
+      </div>
+      <!-- WBC -->
+      <div class="col-md-4">
+        <label for="wbcc" class="form-label">WBC Count</label>
+        <input type="number" name="wbcc" class="form-control" min="1000" max="25000">
+      </div>
+      <!-- RBC Count -->
+      <div class="col-md-4">
+        <label for="rbcc" class="form-label">RBC Count</label>
+        <input type="number" name="rbcc" class="form-control" step="0.1" min="2" max="8">
+      </div>
+      <!-- Hypertension -->
+      <div class="col-md-4">
+        <label for="htn" class="form-label">Hypertension</label>
+        <select name="htn" class="form-select">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <!-- Diabetes -->
+      <div class="col-md-4">
+        <label for="dm" class="form-label">Diabetes Mellitus</label>
+        <select name="dm" class="form-select">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <!-- Appetite -->
+      <div class="col-md-4">
+        <label for="appet" class="form-label">Appetite</label>
+        <select name="appet" class="form-select">
+          <option value="good">Good</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+      <!-- Pedal Edema -->
+      <div class="col-md-4">
+        <label for="pe" class="form-label">Pedal Edema</label>
+        <select name="pe" class="form-select">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <!-- Anemia -->
+      <div class="col-md-4">
+        <label for="ane" class="form-label">Anemia</label>
+        <select name="ane" class="form-select">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
+      <!-- BUN/Creatinine Ratio -->
+      <div class="col-md-4">
+        <label for="bun_sc_ratio" class="form-label">BUN/Creatinine Ratio</label>
+        <input type="number" name="bun_sc_ratio" class="form-control" min="0" max="100">
+      </div>
+      <!-- High Creatinine Flag -->
+      <div class="col-md-4">
+        <label for="high_creatinine" class="form-label">High Creatinine Flag</label>
+        <select name="high_creatinine" class="form-select">
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
+      <!-- Hemoglobin × Blood Urea -->
+      <div class="col-md-4">
+        <label for="hemo_bu" class="form-label">Hemoglobin × Blood Urea</label>
+        <input type="number" name="hemo_bu" class="form-control" min="0" max="1000">
       </div>
     </div>
+  
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
+    </div>
   </form>
-
   <!-- Loading Spinner -->
   <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
     <div class="spinner-border text-primary" role="status"></div>
