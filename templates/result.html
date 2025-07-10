@@ -85,132 +85,232 @@
           
         
 
-<main class="container mt-5">
-  <div class="alert alert-info text-center fs-4">
-    <strong>Prediction:</strong> {{ 'CKD Detected' if prediction == 1 else 'No CKD Detected' }}
-  </div>
+<main class="main">
+  <section class="container mt-5" data-aos="fade-up">
 
-  <div class="row text-center mb-4">
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h5 class="text-success">CKD Probability</h5>
-        <p class="display-6 text-primary">{{ proba * 100 }}%</p>
-      </div>
+    <!-- CKD Prediction Result -->
+    <div class="alert alert-info text-center fs-4">
+      <strong>Prediction:</strong>
+      {{ 'CKD Detected' if prediction == 1 else 'No CKD Detected' }}
     </div>
-    <div class="col-md-6">
-      <div class="card shadow-sm p-3">
-        <h5 class="text-danger">No CKD Probability</h5>
-        <p class="display-6 text-secondary">{{ no_ckd_proba * 100 }}%</p>
-      </div>
+
+    <!-- Visual Cue -->
+    <div class="text-center mb-4">
+      {% if prediction == 1 %}
+        <img src="{{ url_for('static', filename='img/ckd_warning.png') }}" class="img-fluid" alt="CKD Detected" width="180">
+      {% else %}
+        <img src="{{ url_for('static', filename='img/healthy_kidney.png') }}" class="img-fluid" alt="Healthy Kidney" width="180">
+      {% endif %}
     </div>
-  </div>
-  <div class="card mb-4">
-  <div class="alert {{ risk_class }} fw-bold fs-5">
-    Risk Assessment: {{ risk_label }}
-  </div>
-  <div class="card-header" data-bs-toggle="collapse" href="#symptomChecker" style="cursor:pointer;">
-    Not sure what your numbers mean? Check symptoms
-  </div>
-    <div id="symptomChecker" class="collapse">
-      <div class="card-body">
-        <ul class="list-group list-group-flush small">
-          <li class="list-group-item"><strong>Swelling</strong>? → Check <code>pe</code> (Pedal Edema)</li>
-          <li class="list-group-item"><strong>Fatigue</strong>? → Check <code>hemo</code> (Hemoglobin)</li>
-          <li class="list-group-item"><strong>High sugar</strong>? → Check <code>dm</code> (Diabetes Mellitus)</li>
-          <li class="list-group-item"><strong>High blood pressure</strong>? → Check <code>bp</code> (Blood Pressure)</li>
-          <li class="list-group-item"><strong>Pale skin</strong>? → Check <code>rbc</code> / <code>hemo</code></li>
-          <li class="list-group-item"><strong>Loss of appetite</strong>? → Check <code>appet</code></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!-- 🧬 Top 4 Feature Insights -->
-  <div class="row">
-    {% for insight in insights %}
-    <div class="col-md-6">
-      <div class="card mt-4 shadow-sm border-info">
-        <div class="card-header bg-info text-white">
-          {{ loop.index }}. Feature: <code>{{ insight.feature }}</code>
+
+    <!-- Probability Cards -->
+    <div class="row text-center mb-4">
+      <div class="col-md-6 col-12 mb-3">
+        <div class="card shadow-sm p-3 border-success">
+          <h5 class="text-success">CKD Probability</h5>
+          <p class="display-6 text-primary">{{ proba * 100 }}%</p>
         </div>
+      </div>
+      <div class="col-md-6 col-12 mb-3">
+        <div class="card shadow-sm p-3 border-danger">
+          <h5 class="text-danger">No CKD Probability</h5>
+          <p class="display-6 text-secondary">{{ no_ckd_proba * 100 }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Risk Assessment -->
+    <div class="card mb-4 shadow-sm">
+      <div class="alert {{ risk_class }} fw-bold fs-5 mb-0">
+        Risk Assessment:
+        <span class="badge bg-{{ 'danger' if risk_label == 'Very Risky' else 'warning' if risk_label == 'Mildly Risky' else 'success' }}">
+          {{ risk_label }}
+        </span>
+      </div>
+
+      <!-- Symptom Checker -->
+      <div class="card-header" data-bs-toggle="collapse" href="#symptomChecker" style="cursor:pointer;">
+        <i class="bi bi-thermometer-half me-2"></i>Not sure what your numbers mean? Check symptoms
+      </div>
+      <div id="symptomChecker" class="collapse">
         <div class="card-body">
-          <p><strong>Reason:</strong> {{ insight.reason }}</p>
-          <p><strong>Cure:</strong> {{ insight.cure }}</p>
-          <p><strong>Remedy:</strong> {{ insight.remedy }}</p>
+          <ul class="list-group list-group-flush small">
+            <li class="list-group-item"><strong>Swelling</strong>? → Check <code>pe</code> (Pedal Edema)</li>
+            <li class="list-group-item"><strong>Fatigue</strong>? → Check <code>hemo</code> (Hemoglobin)</li>
+            <li class="list-group-item"><strong>High sugar</strong>? → Check <code>dm</code> (Diabetes Mellitus)</li>
+            <li class="list-group-item"><strong>High blood pressure</strong>? → Check <code>bp</code> (Blood Pressure)</li>
+            <li class="list-group-item"><strong>Pale skin</strong>? → Check <code>rbc</code> / <code>hemo</code></li>
+            <li class="list-group-item"><strong>Loss of appetite</strong>? → Check <code>appet</code></li>
+          </ul>
         </div>
       </div>
     </div>
-    {% endfor %}
-  </div>
 
-  <hr class="my-5">
-
-  <!-- SHAP, PDP, LIME Graphs -->
-  <div class="text-center">
-    <h4 class="mb-3">SHAP Summary Plot (Feature Importance)</h4>
-    <img src="{{ url_for('static', filename=shap_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="SHAP Summary">
-  </div>
-
-  <div class="text-center">
-    <h4 class="mb-3">Partial Dependence Plots (PDP)</h4>
-    <img src="{{ url_for('static', filename=pdp_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="PDP Plot">
-  </div>
-
-  <div class="text-center">
-    <h4 class="mb-3">LIME Explanation (Instance-Level)</h4>
-    <img src="{{ url_for('static', filename=lime_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="LIME Plot">
-  </div>
-
-  <!-- Optional Collapsible: How to Read Graphs -->
-  <div class="text-center mt-4">
-    <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#interpretationGuide" role="button">
-      How to Read the Graphs
-    </a>
-  </div>
-
-  <div class="collapse mt-4" id="interpretationGuide">
-    <div class="card border-secondary shadow-sm">
-      <div class="card-header bg-secondary text-white">
-        Understanding the Graphs
+    <!-- Top 4 Feature Insights -->
+    <div class="row">
+      {% for insight in insights %}
+      <div class="col-md-6 col-12 mb-4">
+        <div class="card shadow-sm border-info">
+          <div class="card-header bg-info text-white">
+            {{ loop.index }}. Feature: <code>{{ insight.feature }}</code>
+          </div>
+          <div class="card-body">
+            <p><strong>Reason:</strong> {{ insight.reason }}</p>
+            <p><strong>Cure:</strong> {{ insight.cure }}</p>
+            <p><strong>Remedy:</strong> {{ insight.remedy }}</p>
+          </div>
+        </div>
       </div>
-      <div class="card-body text-start">
-        <h5><strong>SHAP Summary Plot</strong></h5>
-        <ul>
-          <li><strong>X-axis:</strong> Impact on prediction (right = more CKD risk).</li>
-          <li><strong>Color:</strong> Red = high value, Blue = low value.</li>
-          <li>Dots = user cases; farther right = higher risk.</li>
-        </ul>
-        <hr>
-        <h5><strong>LIME Plot</strong></h5>
-        <ul>
-          <li>Explains why this prediction was made.</li>
-          <li><strong>Green bars:</strong> Push toward CKD.</li>
-          <li><strong>Red bars:</strong> Push away from CKD.</li>
-        </ul>
-        <hr>
-        <h5><strong>PDP Plot</strong></h5>
-        <ul>
-          <li><strong>X-axis:</strong> Feature value range.</li>
-          <li><strong>Y-axis:</strong> Model's predicted risk of CKD.</li>
-          <li>Shows how increasing a feature (e.g., creatinine) affects CKD probability.</li>
-        </ul>
+      {% endfor %}
+    </div>
+
+    <hr class="my-5">
+
+    <!-- Visualizations -->
+    <div class="text-center">
+      <h4 class="mb-3">SHAP Summary Plot (Feature Importance)</h4>
+      <img src="{{ url_for('static', filename=shap_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="SHAP Summary">
+    </div>
+
+    <div class="text-center">
+      <h4 class="mb-3">Partial Dependence Plot (PDP)</h4>
+      <img src="{{ url_for('static', filename=pdp_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="PDP Plot">
+    </div>
+
+    <div class="text-center">
+      <h4 class="mb-3">LIME Explanation (Instance-Level)</h4>
+      <img src="{{ url_for('static', filename=lime_plot.split('static/')[1]) }}" class="img-fluid mb-4" alt="LIME Plot">
+    </div>
+
+    <!-- How to Read Graphs -->
+    <div class="text-center mt-4">
+      <a class="btn btn-outline-secondary" data-bs-toggle="collapse" href="#interpretationGuide" role="button">
+        <i class="bi bi-info-circle"></i> How to Read the Graphs
+      </a>
+    </div>
+
+    <div class="collapse mt-4" id="interpretationGuide">
+      <div class="card border-secondary shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          Understanding the Graphs
+        </div>
+        <div class="card-body text-start">
+          <h5><strong>SHAP Summary Plot</strong></h5>
+          <ul>
+            <li><strong>X-axis:</strong> Impact on prediction (right = more CKD risk).</li>
+            <li><strong>Color:</strong> Red = high value, Blue = low value.</li>
+            <li>Each dot = patient case; farther right = greater CKD contribution.</li>
+          </ul>
+          <hr>
+          <h5><strong>LIME Plot</strong></h5>
+          <ul>
+            <li><strong>Green bars:</strong> Features pushing toward CKD prediction.</li>
+            <li><strong>Red bars:</strong> Features pushing away from CKD.</li>
+            <li>Helps explain the final decision for this specific patient.</li>
+          </ul>
+          <hr>
+          <h5><strong>PDP Plot</strong></h5>
+          <ul>
+            <li><strong>X-axis:</strong> Feature value (e.g., creatinine level).</li>
+            <li><strong>Y-axis:</strong> Predicted CKD risk from the model.</li>
+            <li>Visualizes how each feature affects model output in isolation.</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Try Again Button -->
-  <div class="text-center mt-5">
-    <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">Try Another Diagnosis</a>
-  
-    <a href="{{ url_for('diet', eat=diet_eat, nonveg=diet_nonveg, avoid=diet_avoid, top3=top3) }}" class="btn btn-success ms-2">
-      View AI Diet Plan
-    </a>
-  </div>
+    <!-- CTA Buttons -->
+    <div class="text-center mt-5">
+      <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">
+        <i class="bi bi-arrow-repeat"></i> Try Another Diagnosis
+      </a>
 
+      <a href="{{ url_for('diet', eat=diet_eat, nonveg=diet_nonveg, avoid=diet_avoid, top3=top3) }}" class="btn btn-success ms-2">
+        <i class="bi bi-nut"></i> View AI Diet Plan
+      </a>
+    </div>
+
+  </section>
 </main>
 
-<footer class="bg-light text-center py-3 mt-5">
-  <p class="mb-0">&copy; 2025 NephroCare. All rights reserved.</p>
-</footer>
+  <footer id="footer" class="footer light-background">
+  
+    <div class="container footer-top">
+      <div class="row gy-4">
+  
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">NephroCare</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Sector 10, Panchkula</p>
+            <p>Haryana, India</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 98140 87899</span></p>
+            <p><strong>Email:</strong> <span>samanyuahuja@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#predict">Prediction</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>About NephroCare</h4>
+          <p>An AI-powered platform offering early-stage CKD prediction, explainability, dietary recommendations, and medical guidance personalized for every patient.</p>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="container copyright text-center mt-4">
+      <p>© <span>2025</span> <strong class="px-1 sitename">NephroCare</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Customized by Samanyu Ahuja
+      </div>
+    </div>
+  
+  </footer>
+  
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
 <script>
 const vegList = {{ diet_eat | tojson }};
 const nonvegList = {{ diet_nonveg | tojson }};
