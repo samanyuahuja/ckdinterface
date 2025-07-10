@@ -292,33 +292,39 @@
     </div>
   
   </footer>
+   
   
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-    <i class="bi bi-arrow-up-short"></i>
-  </a>
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+      <i class="bi bi-arrow-up-short"></i>
+    </a>
   
-  <!-- Preloader -->
-  <div id="preloader"></div>
+    <!-- Preloader -->
+    <div id="preloader"></div>
   
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!-- Vendor JS Files (Only if you're using these plugins) -->
+    <script src="{{ url_for('static', filename='assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
   
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-<script>
-  const vegList = {{ diet_eat | tojson }};
-  const nonvegList = {{ diet_nonveg | tojson }};
-  const avoidList = {{ diet_avoid | tojson }};
-  const top3 = {{ top3 | tojson }};
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script>
-</body>
-</html>
+    <!-- Data for Diet Toggle (only include this if you're on diet.html) -->
+    {% if diet_eat and diet_nonveg and diet_avoid and top3 %}
+    <script>
+      const vegList = {{ diet_eat | tojson }};
+      const nonvegList = {{ diet_nonveg | tojson }};
+      const avoidList = {{ diet_avoid | tojson }};
+      const top3 = {{ top3 | tojson }};
+    </script>
+    {% endif %}
+  
+    <!-- Main JS File -->
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+  
+    <!-- Remove this duplicate Bootstrap line -->
+    {# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> #}
+  
+  </body>
+  </html>
