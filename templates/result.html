@@ -312,12 +312,13 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 <script>
-const vegList = {{ diet_eat | tojson }};
-const nonvegList = {{ diet_nonveg | tojson }};
-const avoidList = {{ diet_avoid | tojson }};
-const top3 = {{ top3 | tojson }};
+  const vegList = {{ diet_eat | tojson }};
+  const nonvegList = {{ diet_nonveg | tojson }};
+  const avoidList = {{ diet_avoid | tojson }};
+  const top3 = {{ top3 | tojson }};
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
