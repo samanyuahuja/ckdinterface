@@ -83,157 +83,107 @@
           </div> <!-- closes .branding -->
           </header>
           
-          <main class="main">
+          
 
-<main class="container mt-4">
-  <section>
-    <h2 class="border-bottom pb-2">Upload Your Medical Report</h2>
+<main class="container mt-5">
+
+  <!-- Page Title -->
+  <div class="section-title text-center mb-5" data-aos="fade-up">
+    <h2>CKD Diagnosis Portal</h2>
+    <p>Upload your report or fill the form below for an AI-powered prediction.</p>
+  </div>
+
+  <!-- Upload Section -->
+  <div class="card p-4 mb-5" data-aos="fade-up">
+    <h5 class="mb-3">Upload Your Medical Report</h5>
     <form id="diagnosisForm" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
-      <div class="mb-4">
-        <label for="csv_file" class="form-label">Upload CSV File</label>
-        <input type="file" class="form-control" name="csv_file" />
-      </div>
+      <input type="file" class="form-control" name="csv_file">
+    </form>
+  </div>
 
-      <h2 class="border-bottom pb-2">Or Enter Details Manually</h2>
-
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Age</label>
-          <input type="number" class="form-control" name="age" placeholder="Age" value="45" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Blood Pressure (bp)</label>
-          <input type="number" class="form-control" name="bp" value="80" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Albumin (al)</label>
-          <input type="number" class="form-control" name="al" min="0" max="5" value="1">
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Sugar (su)</label>
-          <input type="number" class="form-control" name="su" min="0" max="5" value="0">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Red Blood Cells (rbc)</label>
-          <select class="form-control" name="rbc">
-            <option value="normal" selected>Normal</option>
-            <option value="abnormal">Abnormal</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Pus Cell (pc)</label>
-          <select class="form-control" name="pc">
-            <option value="normal" selected>Normal</option>
-            <option value="abnormal">Abnormal</option>
-          </select>
+  <!-- Symptom Checker Toggle -->
+  <div class="accordion mb-4" id="symptomCheckerAccordion" data-aos="fade-up">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="symptomCheckerHeading">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#symptomChecker" aria-expanded="false">
+          AI Symptom Checker (Optional)
+        </button>
+      </h2>
+      <div id="symptomChecker" class="accordion-collapse collapse" data-bs-parent="#symptomCheckerAccordion">
+        <div class="accordion-body">
+          <p><strong>Swelling in legs?</strong> → Check <code>Pedal Edema</code></p>
+          <p><strong>Fatigue or breathlessness?</strong> → Check <code>Hemoglobin</code> & <code>Anemia</code></p>
+          <p><strong>High sugar levels?</strong> → Check <code>Diabetes Mellitus</code> & <code>Blood Glucose Random</code></p>
+          <p><strong>Loss of appetite?</strong> → Check <code>Appetite</code></p>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="row mb-3">
+  <!-- Manual Entry Form -->
+  <form id="diagnosisFormManual" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data" data-aos="fade-up">
+    <div class="card p-4">
+      <h5 class="mb-4">Manual Input</h5>
+
+      <!-- Input Groups -->
+      <div class="row g-4">
         <div class="col-md-4">
-          <label class="form-label">Pus Cell Clumps (ba)</label>
-          <select class="form-control" name="ba">
-            <option value="notpresent" selected>Not Present</option>
-            <option value="present">Present</option>
-          </select>
+          <label class="form-label" for="age">Age</label>
+          <input type="number" class="form-control" name="age" value="45" min="0" max="120" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Blood Glucose Random (bgr)</label>
-          <input type="number" class="form-control" name="bgr" value="150">
+          <label class="form-label" for="bp">Blood Pressure
+            <i class="bi bi-info-circle text-primary" data-bs-toggle="popover" title="Blood Pressure" data-bs-content="Normal BP is around 120/80 mmHg. Values over 140 may indicate hypertension."></i>
+          </label>
+          <input type="number" class="form-control" name="bp" value="80" min="0" max="200" required>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Blood Urea (bu)</label>
-          <input type="number" class="form-control" name="bu" value="50">
+          <label class="form-label" for="al">Albumin
+            <i class="bi bi-info-circle text-primary" data-bs-toggle="popover" title="Albumin" data-bs-content="Protein in urine. High levels may indicate kidney damage."></i>
+          </label>
+          <input type="number" class="form-control" name="al" value="1" min="0" max="5">
         </div>
       </div>
 
-      <div class="row mb-3">
+      <!-- Add other form rows like 'su', 'rbc', 'pc', 'sc', 'sod', 'pot', etc. in the same structure -->
+      <!-- Example row for Hemoglobin and Diabetes -->
+      <div class="row g-4 mt-3">
         <div class="col-md-4">
-          <label class="form-label">Serum Creatinine (sc)</label>
-          <input type="number" class="form-control" name="sc" value="1.5">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Sodium (sod)</label>
-          <input type="number" class="form-control" name="sod" value="140">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Potassium (pot)</label>
-          <input type="number" class="form-control" name="pot" value="4.5">
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Hemoglobin (hemo)</label>
-          <input type="number" class="form-control" name="hemo" value="12.0">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">WBC Count (wbcc)</label>
-          <input type="number" class="form-control" name="wbcc" value="7000">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">RBC Count (rbcc)</label>
-          <input type="number" class="form-control" name="rbcc" value="4.5">
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label class="form-label">Hypertension (htn)</label>
-          <select class="form-control" name="htn">
-            <option value="no" selected>No</option>
-            <option value="yes">Yes</option>
-          </select>
+          <label class="form-label">Hemoglobin (hemo)
+            <i class="bi bi-info-circle text-primary" data-bs-toggle="popover" title="Hemoglobin" data-bs-content="Low hemoglobin can cause fatigue and is linked to anemia."></i>
+          </label>
+          <input type="number" class="form-control" name="hemo" value="12.0" step="0.1" min="5" max="20">
         </div>
         <div class="col-md-4">
           <label class="form-label">Diabetes Mellitus (dm)</label>
-          <select class="form-control" name="dm">
+          <select class="form-select" name="dm">
             <option value="no" selected>No</option>
             <option value="yes">Yes</option>
           </select>
         </div>
         <div class="col-md-4">
           <label class="form-label">Appetite (appet)</label>
-          <select class="form-control" name="appet">
+          <select class="form-select" name="appet">
             <option value="good" selected>Good</option>
             <option value="poor">Poor</option>
           </select>
         </div>
       </div>
 
-      <div class="row mb-4">
-        <div class="col-md-4">
-          <label class="form-label">Pedal Edema (pe)</label>
-          <select class="form-control" name="pe">
-            <option value="no" selected>No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Anemia (ane)</label>
-          <select class="form-control" name="ane">
-            <option value="no" selected>No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
+      <!-- Submit -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-lg">
+          Generate CKD Report
+        </button>
       </div>
-
-      <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
-      </div>
-    </form>
-
-    <!-- Loading spinner (initially hidden) -->
-    <div id="loadingSpinner" style="display: none;" class="text-center mt-4">
-      <div class="spinner-border text-primary" role="status"></div>
-      <p class="mt-2">Generating your CKD report...</p>
     </div>
-  </section>
-</main>
-  </section>
+  </form>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-2">Generating your CKD report...</p>
+  </div>
 </main>
 
   <footer id="footer" class="footer light-background">
