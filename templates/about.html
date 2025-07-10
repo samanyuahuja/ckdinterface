@@ -83,35 +83,226 @@
           </div> <!-- closes .branding -->
           </header>
 
-<main class="container mt-4">
-  <section>
-    <h2 class="border-bottom pb-2">What is CKD?</h2>
-    <p>Chronic Kidney Disease (CKD) means your kidneys are damaged and can’t filter blood the way they should. This damage can cause waste to build up in your body.</p>
+  <main id="about" class="main">
+
+  <!-- About CKD Section -->
+  <section class="section about-section">
+    <div class="container" data-aos="fade-up">
+
+      <!-- Section Title -->
+      <div class="section-title">
+        <h2>About Chronic Kidney Disease</h2>
+        <p>Understand CKD and how early intervention can protect your health.</p>
+      </div>
+
+      <!-- Row Layout -->
+      <div class="row gy-4">
+
+        <!-- Text Column -->
+        <div class="col-lg-7 content">
+          <h3>What is Chronic Kidney Disease (CKD)?</h3>
+          <p>
+            Chronic Kidney Disease (CKD) is a long-term condition where the kidneys gradually lose function over time.
+            Healthy kidneys filter wastes and excess fluids from your blood, which are then excreted in urine.
+            In CKD, this function is impaired, leading to a buildup of harmful wastes and fluids in the body.
+          </p>
+
+          <ul>
+            <li><i class="bi bi-check-circle"></i> CKD is often caused by diabetes, hypertension, and other underlying conditions.</li>
+            <li><i class="bi bi-check-circle"></i> It can progress silently without symptoms until advanced stages.</li>
+            <li><i class="bi bi-check-circle"></i> Early detection and lifestyle changes can slow progression.</li>
+          </ul>
+
+          <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Check Your CKD Risk</a>
+          </div>
+        </div>
+
+        <!-- Image Column -->
+        <div class="col-lg-5">
+          <img src="{{ url_for('static', filename='assets/img/ckd.png') }}" class="img-fluid rounded shadow" alt="CKD Overview">
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2 class="border-bottom pb-2">Stages of CKD</h2>
-    <p>CKD progresses through stages 1 to 5, based on how well your kidneys are functioning (GFR levels).</p>
-    <ul>
-      <li>Stage 1: Normal function but evidence of kidney damage</li>
-      <li>Stage 2: Mild reduction in kidney function</li>
-      <li>Stage 3: Moderate reduction</li>
-      <li>Stage 4: Severe reduction</li>
-      <li>Stage 5: Kidney failure (dialysis or transplant needed)</li>
-    </ul>
+  <!-- CKD Stages Section -->
+  <section class="section bg-light">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Stages of CKD</h2>
+        <p>CKD is classified into 5 stages based on kidney function (GFR levels).</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Stage 1:</strong> Normal kidney function with some signs of damage.</li>
+            <li class="list-group-item"><strong>Stage 2:</strong> Mild decrease in function. GFR 60-89.</li>
+            <li class="list-group-item"><strong>Stage 3:</strong> Moderate reduction. GFR 30-59.</li>
+            <li class="list-group-item"><strong>Stage 4:</strong> Severe decrease. GFR 15-29.</li>
+            <li class="list-group-item"><strong>Stage 5:</strong> Kidney failure. GFR &lt; 15. Dialysis or transplant may be needed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2 class="border-bottom pb-2">Risk Factors</h2>
-    <p>Common risk factors include diabetes, high blood pressure, family history, obesity, and smoking.</p>
+  <!-- Risk Factors Section -->
+  <section class="section">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Risk Factors</h2>
+        <p>Understanding your risk can help with prevention and early treatment.</p>
+      </div>
+
+      <div class="row gy-4">
+        <div class="col-md-6">
+          <ul class="list-unstyled">
+            <li><i class="bi bi-exclamation-circle-fill text-danger me-2"></i> Diabetes</li>
+            <li><i class="bi bi-exclamation-circle-fill text-danger me-2"></i> High Blood Pressure</li>
+            <li><i class="bi bi-exclamation-circle-fill text-danger me-2"></i> Family History of Kidney Disease</li>
+            <li><i class="bi bi-exclamation-circle-fill text-danger me-2"></i> Obesity and Sedentary Lifestyle</li>
+            <li><i class="bi bi-exclamation-circle-fill text-danger me-2"></i> Smoking</li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <img src="{{ url_for('static', filename='assets/img/diagnos.png') }}" class="img-fluid rounded shadow" alt="CKD Risk Factors">
+        </div>
+      </div>
+    </div>
   </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-light">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1">
+              Can CKD be cured?
+            </button>
+          </h2>
+          <div id="faqCollapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              CKD cannot be completely cured, but its progression can be slowed or managed through proper medical care, lifestyle changes, and monitoring.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq2">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
+              What are the early signs of CKD?
+            </button>
+          </h2>
+          <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              In early stages, CKD often has no symptoms. As it progresses, symptoms may include fatigue, swelling (especially in legs), nausea, and frequent urination.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faq3">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
+              How is CKD diagnosed?
+            </button>
+          </h2>
+          <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              CKD is diagnosed using blood tests (eGFR), urine tests (protein levels), and imaging tests. Your doctor may also review your medical history and risk profile.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer class="bg-light text-center py-3 mt-5">
-  <p class="mb-0">&copy; 2025 NephroCare. All rights reserved.</p>
-</footer>
+  <footer id="footer" class="footer light-background">
+  
+    <div class="container footer-top">
+      <div class="row gy-4">
+  
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">NephroCare</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Sector 10, Panchkula</p>
+            <p>Haryana, India</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+91 98140 87899</span></p>
+            <p><strong>Email:</strong> <span>samanyuahuja@gmail.com</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#predict">Prediction</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h4>About NephroCare</h4>
+          <p>An AI-powered platform offering early-stage CKD prediction, explainability, dietary recommendations, and medical guidance personalized for every patient.</p>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="container copyright text-center mt-4">
+      <p>© <span>2025</span> <strong class="px-1 sitename">NephroCare</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | Customized by Samanyu Ahuja
+      </div>
+    </div>
+  
+  </footer>
+  
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+  
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ url_for('static', filename='scripts.js') }}"></script>
-</body>
-</html>
