@@ -1727,3 +1727,20 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+/* === Diagnosis Form Custom Styles === */
+#diagnosisForm {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.diagnosis-section label {
+  font-weight: 600;
+  color: #0056b3;
+}
+@media (max-width: 768px) {
+  #diagnosisForm {
+    padding: 20px 10px;
+  }
+}
