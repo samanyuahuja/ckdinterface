@@ -1815,7 +1815,34 @@ section,
   color: #1977cc;
   cursor: pointer;
 }
+/*--------------------------------------------------------------
+# Diagnosis Form Enhancements
+--------------------------------------------------------------*/
+.ckd-form-section .form-floating {
+  position: relative;
+}
 
+.ckd-form-section .form-control,
+.ckd-form-section .form-select {
+  height: calc(3.5rem + 2px);
+  padding: 1rem 0.75rem;
+  border-radius: 6px;
+}
+
+.ckd-form-section label {
+  color: #444;
+  font-weight: 500;
+}
+
+.ckd-form-section .form-control::placeholder {
+  color: #aaa;
+  opacity: 1;
+}
+
+.ckd-form-section .form-select {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
 
 
 /* Spinner */
