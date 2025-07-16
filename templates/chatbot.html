@@ -191,18 +191,18 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const sendBtn = document.getElementById("sendBtn");
-      if (!sendBtn) return;
+      const chatInput = document.getElementById("chatInput");
+      const chatWindow = document.getElementById("chatWindow");
+  
+      if (!sendBtn || !chatInput || !chatWindow) return;
   
       sendBtn.addEventListener("click", async function () {
-        const chatInput = document.getElementById("chatInput");
-        const chatWindow = document.getElementById("chatWindow");
-  
         const userMsg = chatInput.value.trim();
         if (!userMsg) return;
   
         // Show user message
         const userBubble = document.createElement("div");
-        userBubble.className = "mb-2 p-2 bg-light text-end rounded";
+        userBubble.className = "user-msg mb-2";
         userBubble.innerHTML = `<strong>You:</strong> ${userMsg}`;
         chatWindow.appendChild(userBubble);
         chatInput.value = "";
@@ -210,7 +210,7 @@
   
         // Show loading
         const loadingMsg = document.createElement("div");
-        loadingMsg.className = "mb-2 p-2 text-muted";
+        loadingMsg.className = "text-muted mb-2";
         loadingMsg.innerText = "AI is typing...";
         chatWindow.appendChild(loadingMsg);
         chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -223,25 +223,30 @@
           });
   
           const data = await response.json();
-  
-          // Remove loading and show AI response
           chatWindow.removeChild(loadingMsg);
+  
           const botBubble = document.createElement("div");
-          botBubble.className = "mb-2 p-2 bg-white border rounded";
+          botBubble.className = "ai-msg mb-2";
           botBubble.innerHTML = `<strong>AI:</strong> ${data.response}`;
           chatWindow.appendChild(botBubble);
           chatWindow.scrollTop = chatWindow.scrollHeight;
+  
         } catch (error) {
           chatWindow.removeChild(loadingMsg);
           const errorBubble = document.createElement("div");
-          errorBubble.className = "mb-2 p-2 bg-danger text-white rounded";
+          errorBubble.className = "error-msg mb-2";
           errorBubble.innerText = "Failed to connect to AI.";
           chatWindow.appendChild(errorBubble);
           chatWindow.scrollTop = chatWindow.scrollHeight;
         }
       });
+  
+      // ✅ Add this block below the click event listener
+      chatInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") sendBtn.click();
+      });
     });
   </script>
-  
+
   </body>
   </html>
