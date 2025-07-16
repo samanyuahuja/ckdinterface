@@ -1887,3 +1887,49 @@ section,
     margin-bottom: 20px;
   }
 }
+/*--------------------------------------------------------------
+# Chatbot Section
+--------------------------------------------------------------*/
+.chatbot-section .card {
+  border-radius: 8px;
+}
+
+.chatbot-section #chatWindow {
+  font-size: 15px;
+  line-height: 1.5;
+  background-color: #f1f3f5;
+}
+
+.chatbot-section .user-msg {
+  background-color: #d1e7dd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: right;
+  font-weight: 500;
+}
+
+.chatbot-section .ai-msg {
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: left;
+}
+
+.chatbot-section .error-msg {
+  background-color: #f8d7da;
+  color: #842029;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.chatbot-section .input-group input:focus {
+  box-shadow: none;
+  border-color: #0d6efd;
+}
+
+.chatbot-section .input-group .btn {
+  padding-left: 20px;
+  padding-right: 20px;
+}
