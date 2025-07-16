@@ -1730,72 +1730,93 @@ section,
 /*--------------------------------------------------------------
 # Diagnosis Section
 --------------------------------------------------------------*/
-.ckd-form-section {
-  background-color: var(--background-color);
-  padding: 60px 20px;
+/*--------------------------------------------------------------
+# Diagnosis Form Styling
+--------------------------------------------------------------*/
+.diagnosis-form-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
 }
 
-.ckd-form-section h2 {
-  font-size: 36px;
-  font-weight: 700;
-  color: var(--heading-color);
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.ckd-form-section p {
-  text-align: center;
-  margin-bottom: 40px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  font-size: 18px;
-}
-
-/* Form Cards */
-.ckd-form-section .card {
-  background-color: var(--surface-color);
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 90%);
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-}
-
-/* Input Fields */
-.ckd-form-section .form-label {
-  font-weight: 600;
-  color: var(--heading-color);
-}
-
-.ckd-form-section .form-control,
-.ckd-form-section .form-select {
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
-  border-radius: 6px;
-  box-shadow: none;
-  font-size: 14px;
-  padding: 10px;
-  background-color: color-mix(in srgb, var(--surface-color), transparent 5%);
-}
-
-.ckd-form-section .form-control:focus,
-.ckd-form-section .form-select:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--accent-color), transparent 80%);
-}
-
-/* Submit Button */
-.ckd-form-section button[type="submit"] {
-  background-color: var(--accent-color);
-  color: var(--contrast-color);
-  font-weight: 600;
-  font-size: 16px;
-  padding: 12px 30px;
+.diagnosis-form-section .card {
   border: none;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
 }
 
-.ckd-form-section button[type="submit"]:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+.diagnosis-form-section .card h5 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c4964;
 }
+
+.diagnosis-form-section label.form-label {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.diagnosis-form-section .form-control,
+.diagnosis-form-section .form-select {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  font-size: 14px;
+  box-shadow: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.diagnosis-form-section .form-control:focus,
+.diagnosis-form-section .form-select:focus {
+  border-color: #1977cc;
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(25, 119, 204, 0.25);
+}
+
+.diagnosis-form-section .row.g-4 > div {
+  margin-bottom: 16px;
+}
+
+.diagnosis-form-section .btn-primary {
+  padding: 10px 26px;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 6px;
+  background-color: #1977cc;
+  border: none;
+  transition: 0.3s;
+}
+
+.diagnosis-form-section .btn-primary:hover {
+  background-color: #145fa8;
+}
+
+.diagnosis-form-section .form-header {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.diagnosis-form-section .form-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #012970;
+}
+
+.diagnosis-form-section .form-header p {
+  color: #6c757d;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+/* Optional: Tooltip/Icon Styling */
+.diagnosis-form-section i.bi-info-circle {
+  margin-left: 6px;
+  color: #1977cc;
+  cursor: pointer;
+}
+
+
 
 /* Spinner */
 #loadingSpinner {
