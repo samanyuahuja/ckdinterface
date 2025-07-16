@@ -1727,3 +1727,115 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+/*--------------------------------------------------------------
+# Diagnosis Section
+--------------------------------------------------------------*/
+.ckd-form-section {
+  background-color: var(--background-color);
+  padding: 60px 20px;
+}
+
+.ckd-form-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--heading-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ckd-form-section p {
+  text-align: center;
+  margin-bottom: 40px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-size: 18px;
+}
+
+/* Form Cards */
+.ckd-form-section .card {
+  background-color: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Input Fields */
+.ckd-form-section .form-label {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.ckd-form-section .form-control,
+.ckd-form-section .form-select {
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border-radius: 6px;
+  box-shadow: none;
+  font-size: 14px;
+  padding: 10px;
+  background-color: color-mix(in srgb, var(--surface-color), transparent 5%);
+}
+
+.ckd-form-section .form-control:focus,
+.ckd-form-section .form-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+/* Submit Button */
+.ckd-form-section button[type="submit"] {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.ckd-form-section button[type="submit"]:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+}
+
+/* Spinner */
+#loadingSpinner {
+  margin-top: 30px;
+}
+
+#loadingSpinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+#loadingSpinner p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--accent-color);
+}
+
+/* Symptom Checker Accordion */
+#symptomCheckerAccordion .accordion-button {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+#symptomCheckerAccordion .accordion-body p {
+  margin: 8px 0;
+  font-size: 15px;
+  color: var(--default-color);
+}
+
+#symptomCheckerAccordion code {
+  background-color: #f2f6fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #c7254e;
+  font-size: 14px;
+}
+
+/* Responsive Grid Fix */
+@media (max-width: 768px) {
+  .ckd-form-section .col-md-4 {
+    margin-bottom: 20px;
+  }
+}
