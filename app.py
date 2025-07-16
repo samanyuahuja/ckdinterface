@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask import make_response
 from flask import request
 import pandas as pd
@@ -13,6 +13,8 @@ from sklearn.inspection import PartialDependenceDisplay
 from flask import make_response
 from xhtml2pdf import pisa
 from io import BytesIO
+import openai
+import os
 
 
 app = Flask(__name__)
@@ -25,10 +27,37 @@ def home():
 @app.route('/about')
 def about():
     return render_template("about.html")
+# Make sure to set your API key securely
+from flask import request, jsonify
+import openai
+import os
 
-@app.route('/chatbot')
+# Make sure to set your API key securely
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Set this in Railway secrets
+
+@app.route("/chatbot", methods=["POST"])
 def chatbot():
-    return render_template("chatbot.html")
+    data = request.get_json()
+    user_message = data.get("message", "")
+
+    if not user_message:
+        return jsonify({"error": "No message received."}), 400
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Or gpt-4 if you're subscribed
+            messages=[
+                {"role": "system", "content": "You're a helpful AI assistant for CKD (Chronic Kidney Disease)."},
+                {"role": "user", "content": user_message}
+            ],
+            max_tokens=150,
+            temperature=0.7
+        )
+        reply = response["choices"][0]["message"]["content"]
+        return jsonify({"reply": reply})
+    except Exception as e:
+        print("Chatbot error:", e)
+        return jsonify({"error": "AI response failed"}), 500
 
 
 
