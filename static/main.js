@@ -307,3 +307,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+document.querySelector("#sendChatBtn").addEventListener("click", async () => {
+  const input = document.querySelector("#chatInput");
+  const message = input.value.trim();
+  if (!message) return;
+
+  const chatBox = document.querySelector("#chatBox");
+  chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+  input.value = "";
+
+  try {
+    const res = await fetch("/chatbot", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await res.json();
+    if (data.reply) {
+      chatBox.innerHTML += `<p><strong>AI:</strong> ${data.reply}</p>`;
+    } else {
+      chatBox.innerHTML += `<p><strong>AI:</strong> Failed to get response.</p>`;
+    }
+  } catch (err) {
+    chatBox.innerHTML += `<p><strong>AI:</strong> Failed to connect.</p>`;
+  }
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
