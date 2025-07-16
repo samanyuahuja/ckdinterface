@@ -84,22 +84,24 @@
           
           <main class="main">
 
-<main class="container py-5">
-  <div class="section-title text-center mb-5">
-    <h2>CKD Chatbot Assistant</h2>
-    <p class="text-muted">Ask questions related to chronic kidney disease, diet, diagnosis, or symptoms. Our AI assistant will respond instantly.</p>
-  </div>
+<main class="main py-5 chatbot-section">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title text-center mb-4">
+      <h2>CKD Chatbot Assistant</h2>
+      <p class="text-muted">Ask your questions about CKD, diet, symptoms, or reports — our AI assistant is here to help you.</p>
+    </div>
 
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <div id="chatWindow" class="border rounded p-3 mb-3" style="height: 350px; overflow-y: auto; background-color: #f8f9fa;">
-            <!-- Messages appear here -->
-          </div>
-          <div class="input-group">
-            <input type="text" id="chatInput" class="form-control" placeholder="Type your question..." aria-label="Chat Input">
-            <button class="btn btn-primary" id="sendBtn">Send</button>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <div id="chatWindow" class="p-3 border rounded overflow-auto" style="height: 350px; background: #f8f9fa;">
+              <!-- Chat messages appear here -->
+            </div>
+            <div class="input-group mt-3">
+              <input type="text" id="chatInput" class="form-control" placeholder="Type your question..." />
+              <button class="btn btn-primary" id="sendBtn">Send</button>
+            </div>
           </div>
         </div>
       </div>
