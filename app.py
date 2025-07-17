@@ -31,7 +31,9 @@ def about():
 from flask import request, jsonify
 import openai
 import os
-
+@app.route("/chatbot")
+def chatbot_page():
+    return render_template("chatbot.html")
 # Make sure to set your API key securely
 print("OpenAI key (should not be None):", os.getenv("OPENAI_API_KEY"))
 
