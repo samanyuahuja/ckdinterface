@@ -13,8 +13,7 @@ from sklearn.inspection import PartialDependenceDisplay
 from flask import make_response
 from xhtml2pdf import pisa
 from io import BytesIO
-from openai import OpenAI
-import os
+
 
 
 app = Flask(__name__)
@@ -28,44 +27,110 @@ def home():
 def about():
     return render_template("about.html")
 # Make sure to set your API key securely
-from flask import request, jsonify
-import openai
-import os
+
 @app.route("/chatbot")
 def chatbot_page():
     return render_template("chatbot.html")
 # Make sure to set your API key securely
-print("OpenAI key (should not be None):", os.getenv("OPENAI_API_KEY"))
-
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # Set this in Railway secrets
+ # Set this in Railway secrets
 
 # Serve chatbot page (GET)
 @app.route("/get_response", methods=["POST"])
 def get_chatbot_response():
     data = request.get_json()
-    user_message = data.get("message", "")
+    user_message = data.get("message", "").strip()
+    msg = user_message.lower()  # ✅ define msg properly
 
-    if not user_message:
-        return jsonify({"error": "No message received."}), 400
+    if not msg:
+        return jsonify({"reply": "Please enter a message."})
 
-    try:
-        chat_response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You're a helpful AI assistant for CKD (Chronic Kidney Disease)."},
-                {"role": "user", "content": user_message}
-            ],
-            max_tokens=150,
-            temperature=0.7
-        )
-        reply = chat_response.choices[0].message.content
-        return jsonify({"reply": reply})
-    except Exception as e:
-        import traceback
-        print("Chatbot error:", e)
-        traceback.print_exc()
-        return jsonify({"error": "AI response failed"}), 500
+    # ---------------- RULE-BASED LOGIC ----------------
+    if "what is ckd" in msg or "chronic kidney disease" in msg:
+        reply = "Chronic Kidney Disease (CKD) is a condition where your kidneys lose function over time. It's usually caused by diabetes or high blood pressure."
 
+    elif "symptoms" in msg:
+        reply = "Common CKD symptoms include fatigue, swelling in legs, nausea, high blood pressure, and frequent urination."
+
+    elif "treatment" in msg:
+        reply = "CKD treatment depends on the stage. It usually includes managing blood pressure, blood sugar, and avoiding further kidney damage. In severe cases, dialysis or transplant may be needed."
+
+    elif "diet" in msg:
+        reply = "A CKD diet includes low-sodium, low-protein foods, avoiding processed items, and drinking enough water. Consult a nephrologist for a custom plan."
+
+    elif "is ckd curable" in msg:
+        reply = "CKD isn't curable but it can be managed effectively with medications, lifestyle changes, and regular monitoring."
+
+    elif "can i play sports" in msg:
+        reply = "Yes, light to moderate exercise is often encouraged. Always check with your doctor before starting a new routine."
+
+    elif "hi" in msg or "hello" in msg or "hey" in msg:
+        reply = "Hello! I’m NephroBot. Ask me anything about CKD (Chronic Kidney Disease)."
+
+
+
+    elif "high creatinine" in msg.lower():
+        return "High creatinine can indicate poor kidney function. You should consult a nephrologist for further evaluation."
+
+    elif "gfr level" in msg.lower():
+        return "GFR (Glomerular Filtration Rate) is a key indicator of kidney function. A GFR below 60 may suggest CKD."
+    
+    elif "protein in urine" in msg.lower():
+        return "Protein in urine (proteinuria) may indicate kidney damage. It should be investigated further."
+    
+    elif "bun creatinine ratio" in msg.lower():
+        return "An abnormal BUN/creatinine ratio could point to kidney issues or dehydration. Follow-up tests are needed."
+    elif "diet for ckd" in msg.lower():
+        return "CKD diet includes low sodium, controlled protein, and limited potassium and phosphorus depending on stage. Always consult a renal dietitian."
+    
+    elif "what to eat in ckd" in msg.lower():
+        return "Safe foods include white rice, apples, cabbage, cauliflower, and lean protein (based on your stage and labs). Avoid salty, processed, and high-phosphorus foods."
+    
+    elif "ckd nutrition plan" in msg.lower():
+        return "A kidney-friendly plan includes small portions of protein, low-sodium options, and avoiding high potassium/phosphorus foods."
+    
+    elif "can i eat bananas" in msg.lower():
+        return "Bananas are high in potassium and may need to be limited in later CKD stages. Always check with your doctor."
+    elif "how to treat ckd" in msg.lower():
+        return "CKD treatment includes blood pressure control, diabetes management, dietary changes, and medications to protect kidney function."
+    
+    elif "is ckd curable" in msg.lower():
+        return "CKD is not usually curable but progression can be slowed with early detection and proper management."
+    
+    elif "medicines for ckd" in msg.lower():
+        return "Common medications include ACE inhibitors, ARBs, phosphate binders, and diuretics — prescribed based on your condition."
+    
+    elif "dialysis" in msg.lower():
+        return "Dialysis is used in end-stage CKD to remove waste from the blood when kidneys stop working effectively."
+
+    elif "what is sg" in msg.lower():
+        return "SG (specific gravity) measures urine concentration. Abnormal values may indicate kidney issues."
+    
+    elif "what is al" in msg.lower():
+        return "AL (albumin) in urine can signal kidney damage. High levels need medical evaluation."
+    
+    elif "what is rbc" in msg.lower():
+        return "RBC stands for red blood cells. Their presence in urine may indicate kidney inflammation or damage."
+    
+    elif "what is sc" in msg.lower():
+        return "SC (serum creatinine) is a waste product used to assess kidney function."
+
+    elif "ckd vs aki" in msg.lower():
+        return "CKD is a gradual loss of kidney function. AKI (Acute Kidney Injury) is a sudden drop in function and may be reversible."
+    
+    elif "water for ckd" in msg.lower():
+        return "Water intake depends on your CKD stage and if you're retaining fluid. Follow your doctor’s recommendation."
+    
+    elif "can i exercise" in msg.lower():
+        return "Yes, light to moderate exercise is usually safe and beneficial for CKD, but consult your doctor first."
+    
+    elif "is ckd painful" in msg.lower():
+        return "CKD isn't usually painful, but symptoms like swelling, fatigue, or nausea can be uncomfortable."
+    # Add 100+ more elifs here...
+    
+    else:
+        reply = "Sorry, I didn't understand that. Try asking about CKD symptoms, treatment, diet, risk factors, or prevention."
+
+    return jsonify({"reply": reply})
 
 
 @app.route('/language')
