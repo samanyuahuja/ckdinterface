@@ -1732,159 +1732,131 @@ section,
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Diagnosis Form Styling
---------------------------------------------------------------*/
+/* ----------------------------------------------------
+   CKD Form Styling (Overrides + Complements nice-forms)
+----------------------------------------------------- */
+
 .diagnosis-form-section {
-  padding: 60px 0;
-  background-color: #f8f9fa;
+  padding: 50px 20px;
+  background: #fdfdfd;
 }
 
-.diagnosis-form-section .card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+#diagnosisForm .card {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e2e2;
 }
 
-.diagnosis-form-section .card h5 {
-  font-size: 24px;
+#diagnosisForm label {
   font-weight: 600;
-  color: #2c4964;
-}
-
-.diagnosis-form-section label.form-label {
-  font-weight: 500;
-  color: #2c3e50;
+  color: #333;
   font-size: 14px;
-  margin-bottom: 5px;
 }
 
-.diagnosis-form-section .form-control,
-.diagnosis-form-section .form-select {
-  border-radius: 8px;
+#diagnosisForm .form-floating input,
+#diagnosisForm .form-floating select {
+  background-color: #fff;
   border: 1px solid #ccc;
-  padding: 10px 12px;
+  padding: 1rem 0.75rem;
+  border-radius: 8px;
   font-size: 14px;
-  box-shadow: none;
-  transition: border-color 0.2s ease-in-out;
 }
 
-.diagnosis-form-section .form-control:focus,
-.diagnosis-form-section .form-select:focus {
-  border-color: #1977cc;
-  outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(25, 119, 204, 0.25);
+#diagnosisForm .form-floating label {
+  font-size: 13px;
+  color: #555;
 }
 
-.diagnosis-form-section .row.g-4 > div {
-  margin-bottom: 16px;
-}
-
-.diagnosis-form-section .btn-primary {
-  padding: 10px 26px;
+#diagnosisForm .btn-primary {
+  padding: 12px 30px;
   font-weight: 600;
-  font-size: 15px;
+  background: #1977cc;
   border-radius: 6px;
-  background-color: #1977cc;
-  border: none;
-  transition: 0.3s;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.diagnosis-form-section .btn-primary:hover {
+#diagnosisForm .btn-primary:hover {
   background-color: #145fa8;
 }
 
-.diagnosis-form-section .form-header {
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-.diagnosis-form-section .form-header h2 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #012970;
-}
-
-.diagnosis-form-section .form-header p {
-  color: #6c757d;
-  font-size: 16px;
-  margin-bottom: 0;
-}
-
-/* Optional: Tooltip/Icon Styling */
-.diagnosis-form-section i.bi-info-circle {
-  margin-left: 6px;
-  color: #1977cc;
-  cursor: pointer;
-}
-/*--------------------------------------------------------------
-# Diagnosis Form Enhancements
---------------------------------------------------------------*/
-.ckd-form-section .form-floating {
-  position: relative;
-}
-
-.ckd-form-section .form-control,
-.ckd-form-section .form-select {
-  height: calc(3.5rem + 2px);
-  padding: 1rem 0.75rem;
-  border-radius: 6px;
-}
-
-.ckd-form-section label {
-  color: #444;
-  font-weight: 500;
-}
-
-.ckd-form-section .form-control::placeholder {
-  color: #aaa;
-  opacity: 1;
-}
-
-.ckd-form-section .form-select {
-  padding-top: 1.625rem;
-  padding-bottom: 0.625rem;
-}
-
-
-/* Spinner */
+/* --------------------------------------------
+   Spinner Section
+--------------------------------------------- */
 #loadingSpinner {
-  margin-top: 30px;
+  text-align: center;
+  margin-top: 40px;
+  display: none;
 }
 
 #loadingSpinner .spinner-border {
   width: 3rem;
   height: 3rem;
+  border-width: 4px;
+  color: #1977cc;
 }
 
 #loadingSpinner p {
+  font-size: 15px;
   margin-top: 10px;
-  font-size: 16px;
-  color: var(--accent-color);
+  color: #444;
+  font-weight: 500;
 }
 
-/* Symptom Checker Accordion */
+/* --------------------------------------------
+   Symptom Checker Accordion
+--------------------------------------------- */
 #symptomCheckerAccordion .accordion-button {
   font-weight: 600;
-  color: var(--accent-color);
+  background-color: #f0f4f8;
+  color: #1977cc;
+  border-radius: 6px;
 }
 
-#symptomCheckerAccordion .accordion-body p {
-  margin: 8px 0;
-  font-size: 15px;
-  color: var(--default-color);
+#symptomCheckerAccordion .accordion-body {
+  font-size: 14px;
+  color: #444;
+  padding: 20px;
+  background-color: #fcfcfc;
+  border-radius: 6px;
+}
+
+#symptomCheckerAccordion p strong {
+  color: #2c3e50;
 }
 
 #symptomCheckerAccordion code {
-  background-color: #f2f6fc;
+  background-color: #eef3fb;
+  color: #1a73e8;
   padding: 2px 6px;
   border-radius: 4px;
-  color: #c7254e;
+  font-family: monospace;
+  font-size: 13px;
+}
+
+/* --------------------------------------------
+   Upload File Input Style
+--------------------------------------------- */
+input[type="file"] {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  background-color: #fefefe;
+  color: #555;
   font-size: 14px;
 }
 
-/* Responsive Grid Fix */
+/* --------------------------------------------
+   Responsive Tweaks
+--------------------------------------------- */
 @media (max-width: 768px) {
-  .ckd-form-section .col-md-4 {
+  .form-floating {
     margin-bottom: 20px;
+  }
+
+  .btn-primary {
+    width: 100%;
   }
 }
 /*--------------------------------------------------------------
