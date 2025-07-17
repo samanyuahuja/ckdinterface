@@ -62,66 +62,233 @@ def get_chatbot_response():
 
     elif "hi" in msg or "hello" in msg or "hey" in msg:
         reply = "Hello! I’m NephroBot. Ask me anything about CKD (Chronic Kidney Disease)."
+    elif "can ckd cause swelling" in msg:
+        reply = "Yes, swelling in legs, ankles, or around the eyes is common in CKD due to fluid retention."
 
+    elif "how is ckd diagnosed" in msg:
+        reply = "CKD is diagnosed using blood tests (e.g., creatinine, GFR), urine tests (protein levels), and imaging."
 
+    elif "who is at risk of ckd" in msg:
+        reply = "People with diabetes, high blood pressure, heart disease, or a family history of kidney problems are at risk."
 
-    elif "high creatinine" in msg.lower():
-        return "High creatinine can indicate poor kidney function. You should consult a nephrologist for further evaluation."
+    elif "is ckd fatal" in msg:
+        reply = "CKD can become life-threatening in later stages if untreated, especially if it leads to kidney failure."
 
-    elif "gfr level" in msg.lower():
-        return "GFR (Glomerular Filtration Rate) is a key indicator of kidney function. A GFR below 60 may suggest CKD."
-    
-    elif "protein in urine" in msg.lower():
-        return "Protein in urine (proteinuria) may indicate kidney damage. It should be investigated further."
-    
-    elif "bun creatinine ratio" in msg.lower():
-        return "An abnormal BUN/creatinine ratio could point to kidney issues or dehydration. Follow-up tests are needed."
-    elif "diet for ckd" in msg.lower():
-        return "CKD diet includes low sodium, controlled protein, and limited potassium and phosphorus depending on stage. Always consult a renal dietitian."
-    
-    elif "what to eat in ckd" in msg.lower():
-        return "Safe foods include white rice, apples, cabbage, cauliflower, and lean protein (based on your stage and labs). Avoid salty, processed, and high-phosphorus foods."
-    
-    elif "ckd nutrition plan" in msg.lower():
-        return "A kidney-friendly plan includes small portions of protein, low-sodium options, and avoiding high potassium/phosphorus foods."
-    
-    elif "can i eat bananas" in msg.lower():
-        return "Bananas are high in potassium and may need to be limited in later CKD stages. Always check with your doctor."
-    elif "how to treat ckd" in msg.lower():
-        return "CKD treatment includes blood pressure control, diabetes management, dietary changes, and medications to protect kidney function."
-    
-    elif "is ckd curable" in msg.lower():
-        return "CKD is not usually curable but progression can be slowed with early detection and proper management."
-    
-    elif "medicines for ckd" in msg.lower():
-        return "Common medications include ACE inhibitors, ARBs, phosphate binders, and diuretics — prescribed based on your condition."
-    
-    elif "dialysis" in msg.lower():
-        return "Dialysis is used in end-stage CKD to remove waste from the blood when kidneys stop working effectively."
+    elif "stage 1 ckd" in msg:
+        reply = "Stage 1 CKD means kidney damage with normal GFR (90+). It’s often asymptomatic and requires monitoring."
 
-    elif "what is sg" in msg.lower():
-        return "SG (specific gravity) measures urine concentration. Abnormal values may indicate kidney issues."
-    
-    elif "what is al" in msg.lower():
-        return "AL (albumin) in urine can signal kidney damage. High levels need medical evaluation."
-    
-    elif "what is rbc" in msg.lower():
-        return "RBC stands for red blood cells. Their presence in urine may indicate kidney inflammation or damage."
-    
-    elif "what is sc" in msg.lower():
-        return "SC (serum creatinine) is a waste product used to assess kidney function."
+    elif "stage 2 ckd" in msg:
+        reply = "Stage 2 CKD shows mild loss of kidney function (GFR 60–89). Lifestyle changes help slow progression."
 
-    elif "ckd vs aki" in msg.lower():
-        return "CKD is a gradual loss of kidney function. AKI (Acute Kidney Injury) is a sudden drop in function and may be reversible."
+    elif "stage 3 ckd" in msg:
+        reply = "Stage 3 CKD has moderate damage (GFR 30–59). Symptoms may appear. Diet and medication are crucial."
+
+    elif "stage 4 ckd" in msg:
+        reply = "Stage 4 CKD is severe (GFR 15–29). You may prepare for dialysis or transplant. Close medical care is required."
+
+    elif "stage 5 ckd" in msg:
+        reply = "Stage 5 CKD (GFR <15) is kidney failure. Dialysis or transplant is usually necessary."
+
+    elif "what is egfr" in msg:
+        reply = "eGFR (estimated Glomerular Filtration Rate) shows how well your kidneys filter waste. Below 60 indicates CKD."
+
+    elif "what is creatinine" in msg:
+        reply = "Creatinine is a waste product in blood removed by kidneys. High levels may signal kidney dysfunction."
+
+    elif "urine foamy" in msg:
+        reply = "Foamy urine can indicate protein in urine, a possible sign of kidney damage."
+
+    elif "ckd prevention" in msg:
+        reply = "Prevent CKD by managing blood sugar, blood pressure, staying hydrated, avoiding NSAIDs, and routine checkups."
+
+    elif "can ckd cause fatigue" in msg:
+        reply = "Yes, CKD can cause fatigue due to anemia or waste buildup in the blood."
+
+    elif "ckd blood pressure" in msg:
+        reply = "High blood pressure can both cause and result from CKD. Managing BP is essential."
+
+    elif "can ckd cause itching" in msg:
+        reply = "Yes, itching or dry skin is common in CKD due to toxin buildup."
+
+    elif "ckd and anemia" in msg:
+        reply = "CKD may reduce red blood cell production, causing anemia. Treatment includes iron, EPO injections, or diet."
+
+    elif "how to slow ckd" in msg:
+        reply = "Control blood pressure, diabetes, eat healthy, avoid smoking, and take prescribed medications."
+
+    elif "how much water" in msg:
+        reply = "Water needs vary by stage and fluid retention. Don't overdrink. Follow your doctor’s advice."
+
+    elif "should i avoid salt" in msg:
+        reply = "Yes, a low-sodium diet helps prevent fluid retention and control blood pressure."
+
+    elif "phosphorus foods" in msg:
+        reply = "Limit foods like cheese, nuts, colas, and processed meats to reduce phosphorus intake in CKD."
+
+    elif "potassium control" in msg:
+        reply = "High potassium can be dangerous in CKD. Avoid bananas, oranges, tomatoes, and consult your doctor."
+
+    elif "what is nephrologist" in msg:
+        reply = "A nephrologist is a kidney specialist who manages CKD and related conditions."
+
+    elif "can ckd be reversed" in msg:
+        reply = "Most CKD is not reversible, but early intervention can stop or slow progression."
+
+    elif "can i drink coffee" in msg:
+        reply = "Moderate coffee is usually okay in CKD, but avoid high sodium/sugar creamers and stay hydrated."
+
+    elif "ckd and diabetes" in msg:
+        reply = "Diabetes is a leading cause of CKD. Blood sugar control is critical to prevent kidney damage."
+
+    elif "ckd and pregnancy" in msg:
+        reply = "Pregnancy in CKD patients needs high-risk care. Discuss with both a nephrologist and gynecologist."
+
+    elif "how often test kidney" in msg:
+        reply = "CKD patients typically test kidney function every 3–6 months depending on stage and symptoms."
+
+    elif "can i take painkillers" in msg:
+        reply = "Avoid NSAIDs like ibuprofen in CKD. Use acetaminophen if needed and consult your doctor."
+
+    elif "how to reduce creatinine" in msg:
+        reply = "Lowering creatinine means managing underlying conditions. Avoid protein overload and hydrate properly."
+
+    elif "ckd guidelines" in msg:
+        reply = "CKD care follows KDIGO guidelines focusing on GFR, albumin levels, and comorbidity control."
+
+    elif "can i eat eggs" in msg:
+        reply = "Egg whites are better than yolks in CKD. Always adjust protein intake based on stage."
+
+    elif "can i eat chicken" in msg:
+        reply = "Lean meats like chicken can be included in moderation, but portion control is key in CKD."
+
+    elif "what is pd dialysis" in msg:
+        reply = "Peritoneal dialysis uses the lining of your abdomen to filter blood. It's done at home and is an alternative to hemodialysis."
+
+    elif "urine color ckd" in msg:
+        reply = "Urine may be foamy, dark, or bloody in CKD depending on damage severity."
+
+    elif "is ckd genetic" in msg:
+        reply = "Some kidney diseases are inherited, like polycystic kidney disease, increasing CKD risk."
+
+    elif "ckd and heart" in msg:
+        reply = "CKD raises your risk of heart disease due to hypertension, fluid overload, and inflammation."
+
+    elif "ckd and bones" in msg:
+        reply = "CKD affects calcium/phosphorus balance, weakening bones and causing CKD-MBD (mineral bone disorder)."
+
+    elif "kidney transplant" in msg:
+        reply = "A kidney transplant is an option in Stage 5 CKD. It replaces the failed kidney with a healthy one."
+
+    elif "what is urine albumin" in msg:
+        reply = "Urine albumin test checks for protein leak from kidneys. High levels suggest kidney damage."
+
+    elif "ckd diet plan pdf" in msg:
+        reply = "You can generate a personalized CKD diet PDF in the Diet Plan section based on your condition."
+
+    elif "ckd chatbot" in msg:
+        reply = "You’re chatting with me now! I’m NephroBot, designed to answer your questions about CKD."
+
+    elif "who made you" in msg:
+        reply = "I was created by Samanyu Ahuja to assist users with CKD-related queries using rule-based AI."
+
+    elif "ckd in india" in msg:
+        reply = "CKD is rising in India, especially due to diabetes and hypertension. Early screening is essential."
+
+    elif "can ckd be caused by smoking" in msg:
+        reply = "Yes, smoking reduces blood flow to kidneys and worsens CKD progression."
+
+    elif "how to stop ckd" in msg:
+        reply = "CKD can’t be stopped entirely but can be slowed with lifestyle, medication, and early diagnosis."
+
+    elif "does ckd cause back pain" in msg:
+        reply = "Back pain isn’t typical in CKD unless there's a kidney infection or stones. Seek evaluation."
+
+    elif "what is urea" in msg:
+        reply = "Urea is a waste product filtered by kidneys. High levels in blood suggest poor kidney function."
+
+    elif "ckd and depression" in msg:
+        reply = "Chronic illness like CKD may lead to depression. Talk to a counselor or doctor for support."
+
+    elif "can kids get ckd" in msg:
+        reply = "Yes, children can get CKD from genetic, congenital, or acquired causes. Pediatric nephrology care is needed."
+
+    elif "best hospital for ckd" in msg:
+        reply = "Top hospitals include AIIMS, PGI Chandigarh, and Apollo. Choose one with a nephrology department."
+
+    elif "does ckd cause headaches" in msg:
+        reply = "CKD can cause headaches due to high blood pressure, anemia, or uremia."
+
+    elif "what are kidney stones" in msg:
+        reply = "Kidney stones are hard mineral deposits. They’re different from CKD but can cause damage if recurrent."
+
+    elif "ckd vs kidney stone" in msg:
+        reply = "CKD is chronic loss of kidney function. Stones are acute, often painful, and may lead to CKD if frequent."
+
+    elif "can yoga help ckd" in msg:
+        reply = "Yes, gentle yoga can improve blood flow, reduce stress, and support CKD management."
+
+    elif "home remedies" in msg:
+        reply = "Always consult a doctor. Some remedies like hibiscus tea or flaxseed are studied, but evidence is limited."
+
+    elif "high creatinine" in msg:
+        reply = "High creatinine can indicate poor kidney function. You should consult a nephrologist for further evaluation."
+
+    elif "gfr level" in msg:
+        reply = "GFR (Glomerular Filtration Rate) is a key indicator of kidney function. A GFR below 60 may suggest CKD."
     
-    elif "water for ckd" in msg.lower():
-        return "Water intake depends on your CKD stage and if you're retaining fluid. Follow your doctor’s recommendation."
+    elif "protein in urine" in msg:
+        reply = "Protein in urine (proteinuria) may indicate kidney damage. It should be investigated further."
     
-    elif "can i exercise" in msg.lower():
-        return "Yes, light to moderate exercise is usually safe and beneficial for CKD, but consult your doctor first."
+    elif "bun creatinine ratio" in msg:
+        reply = "An abnormal BUN/creatinine ratio could point to kidney issues or dehydration. Follow-up tests are needed."
+
+    elif "diet for ckd" in msg:
+        reply = "CKD diet includes low sodium, controlled protein, and limited potassium and phosphorus depending on stage. Always consult a renal dietitian."
     
-    elif "is ckd painful" in msg.lower():
-        return "CKD isn't usually painful, but symptoms like swelling, fatigue, or nausea can be uncomfortable."
+    elif "what to eat in ckd" in msg:
+        reply = "Safe foods include white rice, apples, cabbage, cauliflower, and lean protein (based on your stage and labs). Avoid salty, processed, and high-phosphorus foods."
+    
+    elif "ckd nutrition plan" in msg:
+        reply = "A kidney-friendly plan includes small portions of protein, low-sodium options, and avoiding high potassium/phosphorus foods."
+    
+    elif "can i eat bananas" in msg:
+        reply = "Bananas are high in potassium and may need to be limited in later CKD stages. Always check with your doctor."
+
+    elif "how to treat ckd" in msg:
+        reply = "CKD treatment includes blood pressure control, diabetes management, dietary changes, and medications to protect kidney function."
+    
+    elif "is ckd curable" in msg:
+        reply = "CKD is not usually curable but progression can be slowed with early detection and proper management."
+    
+    elif "medicines for ckd" in msg:
+        reply = "Common medications include ACE inhibitors, ARBs, phosphate binders, and diuretics — prescribed based on your condition."
+    
+    elif "dialysis" in msg:
+        reply = "Dialysis is used in end-stage CKD to remove waste from the blood when kidneys stop working effectively."
+
+    elif "what is sg" in msg:
+        reply = "SG (specific gravity) measures urine concentration. Abnormal values may indicate kidney issues."
+    
+    elif "what is al" in msg:
+        reply = "AL (albumin) in urine can signal kidney damage. High levels need medical evaluation."
+    
+    elif "what is rbc" in msg:
+        reply = "RBC stands for red blood cells. Their presence in urine may indicate kidney inflammation or damage."
+    
+    elif "what is sc" in msg:
+        reply = "SC (serum creatinine) is a waste product used to assess kidney function."
+
+    elif "ckd vs aki" in msg:
+        reply = "CKD is a gradual loss of kidney function. AKI (Acute Kidney Injury) is a sudden drop in function and may be reversible."
+    
+    elif "water for ckd" in msg:
+        reply = "Water intake depends on your CKD stage and if you're retaining fluid. Follow your doctor’s recommendation."
+    
+    elif "can i exercise" in msg:
+        reply = "Yes, light to moderate exercise is usually safe and beneficial for CKD, but consult your doctor first."
+    
+    elif "is ckd painful" in msg:
+        reply = "CKD isn't usually painful, but symptoms like swelling, fatigue, or nausea can be uncomfortable."
     # Add 100+ more elifs here...
     
     else:
