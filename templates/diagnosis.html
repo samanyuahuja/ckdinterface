@@ -27,7 +27,7 @@
 
   <!-- Main CSS File -->
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-  <link rel="stylesheet" href="https://unpkg.com/nice-forms.css/nice-forms.css" />
+  <link rel="stylesheet" href="https://unpkg.com/nice-forms.css@1.1.0/nice-forms.css" />
   <!-- =======================================================
   * Template Name: Medilab
   * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -125,22 +125,22 @@
       <!-- Example Field -->
       <div class="col-md-4">
         <label for="age">Age</label>
-        <input type="number" name="age" id="age" class="nice-input" placeholder="45" min="0" max="120" required>
+        <input type="number" name="age" id="age" class="nice-input" value="45" min="0" max="120" required>
       </div>
 
       <div class="col-md-4">
         <label for="bp">Blood Pressure</label>
-        <input type="number" name="bp" id="bp" class="nice-input" placeholder="80" min="0" max="200" required>
+        <input type="number" name="bp" id="bp" class="nice-input" value="80" min="0" max="200" required>
       </div>
 
       <div class="col-md-4">
         <label for="al">Albumin</label>
-        <input type="number" name="al" id="al" class="nice-input" placeholder="1" min="0" max="5">
+        <input type="number" name="al" id="al" class="nice-input" value="1" min="0" max="5">
       </div>
 
       <div class="col-md-4">
         <label for="su">Sugar</label>
-        <input type="number" name="su" id="su" class="nice-input" placeholder="0" min="0" max="5">
+        <input type="number" name="su" id="su" class="nice-input" value="0" min="0" max="5">
       </div>
 
       <div class="col-md-4">
@@ -169,42 +169,42 @@
 
       <div class="col-md-4">
         <label for="bgr">Blood Glucose Random</label>
-        <input type="number" name="bgr" id="bgr" class="nice-input" placeholder="100" min="0" max="500">
+        <input type="number" name="bgr" id="bgr" class="nice-input" value="100" min="0" max="500">
       </div>
 
       <div class="col-md-4">
         <label for="bu">Blood Urea</label>
-        <input type="number" name="bu" id="bu" class="nice-input" placeholder="30" min="0" max="200">
+        <input type="number" name="bu" id="bu" class="nice-input" value="30" min="0" max="200">
       </div>
 
       <div class="col-md-4">
         <label for="sc">Serum Creatinine</label>
-        <input type="number" name="sc" id="sc" class="nice-input" placeholder="1.2" step="0.1" min="0" max="15">
+        <input type="number" name="sc" id="sc" class="nice-input" value="1.2" step="0.1" min="0" max="15">
       </div>
 
       <div class="col-md-4">
         <label for="sod">Sodium</label>
-        <input type="number" name="sod" id="sod" class="nice-input" placeholder="140" min="100" max="200">
+        <input type="number" name="sod" id="sod" class="nice-input" value="140" min="100" max="200">
       </div>
 
       <div class="col-md-4">
         <label for="pot">Potassium</label>
-        <input type="number" name="pot" id="pot" class="nice-input" placeholder="4.5" step="0.1" min="2" max="8">
+        <input type="number" name="pot" id="pot" class="nice-input" value="4.5" step="0.1" min="2" max="8">
       </div>
 
       <div class="col-md-4">
         <label for="hemo">Hemoglobin</label>
-        <input type="number" name="hemo" id="hemo" class="nice-input" placeholder="12.0" step="0.1" min="5" max="20">
+        <input type="number" name="hemo" id="hemo" class="nice-input" value="12.0" step="0.1" min="5" max="20">
       </div>
 
       <div class="col-md-4">
         <label for="wbcc">WBC Count</label>
-        <input type="number" name="wbcc" id="wbcc" class="nice-input" placeholder="8000" min="1000" max="25000">
+        <input type="number" name="wbcc" id="wbcc" class="nice-input" value="8000" min="1000" max="25000">
       </div>
 
       <div class="col-md-4">
         <label for="rbcc">RBC Count</label>
-        <input type="number" name="rbcc" id="rbcc" class="nice-input" placeholder="5.0" step="0.1" min="2" max="8">
+        <input type="number" name="rbcc" id="rbcc" class="nice-input" value="5.0" step="0.1" min="2" max="8">
       </div>
 
       <div class="col-md-4">
@@ -247,24 +247,6 @@
         </select>
       </div>
 
-      <div class="col-md-4">
-        <label for="bun_sc_ratio">BUN / Creatinine Ratio</label>
-        <input type="number" name="bun_sc_ratio" id="bun_sc_ratio" class="nice-input" placeholder="25" min="0" max="100">
-      </div>
-
-      <div class="col-md-4">
-        <label for="high_creatinine">High Creatinine Flag</label>
-        <select name="high_creatinine" id="high_creatinine" class="nice-select">
-          <option value="0" selected>No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
-
-      <div class="col-md-4">
-        <label for="hemo_bu">Hemoglobin × Blood Urea</label>
-        <input type="number" name="hemo_bu" id="hemo_bu" class="nice-input" placeholder="360" min="0" max="1000">
-      </div>
-    </div>
 
     <div class="text-center mt-4">
       <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
