@@ -11,4 +11,4 @@ gunicorn==21.2.0
 ipython==8.18.1
 xhtml2pdf==0.2.8
 reportlab==4.0.4
-openai
+
