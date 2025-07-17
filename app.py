@@ -62,7 +62,9 @@ def get_chatbot_response():
         reply = response["choices"][0]["message"]["content"]
         return jsonify({"response": reply})
     except Exception as e:
+        import traceback
         print("Chatbot error:", e)
+        traceback.print_exc()
         return jsonify({"error": "AI response failed"}), 500
 
 
