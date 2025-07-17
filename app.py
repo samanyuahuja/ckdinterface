@@ -34,7 +34,7 @@ import os
 
 # Make sure to set your API key securely
 print("OpenAI key (should not be None):", os.getenv("OPENAI_API_KEY"))
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # Set this in Railway secrets
 
 # Serve chatbot page (GET)
