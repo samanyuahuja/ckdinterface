@@ -317,7 +317,7 @@ document.querySelector("#sendChatBtn").addEventListener("click", async () => {
   input.value = "";
 
   try {
-    const res = await fetch("/chatbot", {
+    const res = await fetch("/get_response", {  // ✅ FIXED ENDPOINT
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message })
