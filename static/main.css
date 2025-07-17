@@ -1736,50 +1736,7 @@ section,
    CKD Form Styling (Overrides + Complements nice-forms)
 ----------------------------------------------------- */
 
-.diagnosis-form-section {
-  padding: 50px 20px;
-  background: #fdfdfd;
-}
 
-#diagnosisForm .card {
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e2e2e2;
-}
-
-#diagnosisForm label {
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-}
-
-#diagnosisForm .form-floating input,
-#diagnosisForm .form-floating select {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 1rem 0.75rem;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-#diagnosisForm .form-floating label {
-  font-size: 13px;
-  color: #555;
-}
-
-#diagnosisForm .btn-primary {
-  padding: 12px 30px;
-  font-weight: 600;
-  background: #1977cc;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-#diagnosisForm .btn-primary:hover {
-  background-color: #145fa8;
-}
 
 /* --------------------------------------------
    Spinner Section
