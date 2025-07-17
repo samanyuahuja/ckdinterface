@@ -13,7 +13,7 @@ from sklearn.inspection import PartialDependenceDisplay
 from flask import make_response
 from xhtml2pdf import pisa
 from io import BytesIO
-import openai
+from openai import OpenAI
 import os
 
 
@@ -33,15 +33,12 @@ import openai
 import os
 
 # Make sure to set your API key securely
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Set this in Railway secrets
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  # Set this in Railway secrets
 
 # Serve chatbot page (GET)
-@app.route("/chatbot", methods=["GET", "POST"])
-def chatbot_page():
-    if request.method == "GET":
-        return render_template("chatbot.html")
-
-    # POST request: handle chatbot input
+@app.route("/get_response", methods=["POST"])
+def get_chatbot_response():
     data = request.get_json()
     user_message = data.get("message", "")
 
@@ -49,7 +46,7 @@ def chatbot_page():
         return jsonify({"error": "No message received."}), 400
 
     try:
-        response = openai.ChatCompletion.create(
+        chat_response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You're a helpful AI assistant for CKD (Chronic Kidney Disease)."},
@@ -58,7 +55,7 @@ def chatbot_page():
             max_tokens=150,
             temperature=0.7
         )
-        reply = response["choices"][0]["message"]["content"]
+        reply = chat_response.choices[0].message.content
         return jsonify({"reply": reply})
     except Exception as e:
         import traceback
