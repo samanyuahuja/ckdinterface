@@ -35,8 +35,14 @@ import os
 # Make sure to set your API key securely
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Set this in Railway secrets
 
-@app.route("/chatbot", methods=["POST"])
-def chatbot():
+# Serve chatbot page (GET)
+@app.route("/chatbot", methods=["GET"])
+def chatbot_page():
+    return render_template("chatbot.html")
+
+# Handle chatbot messages (POST)
+@app.route("/get_response", methods=["POST"])
+def get_chatbot_response():
     data = request.get_json()
     user_message = data.get("message", "")
 
@@ -45,7 +51,7 @@ def chatbot():
 
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Or gpt-4 if you're subscribed
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "You're a helpful AI assistant for CKD (Chronic Kidney Disease)."},
                 {"role": "user", "content": user_message}
@@ -54,7 +60,7 @@ def chatbot():
             temperature=0.7
         )
         reply = response["choices"][0]["message"]["content"]
-        return jsonify({"reply": reply})
+        return jsonify({"response": reply})
     except Exception as e:
         print("Chatbot error:", e)
         return jsonify({"error": "AI response failed"}), 500
