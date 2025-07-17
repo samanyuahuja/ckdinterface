@@ -36,13 +36,12 @@ import os
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Set this in Railway secrets
 
 # Serve chatbot page (GET)
-@app.route("/chatbot", methods=["GET"])
+@app.route("/chatbot", methods=["GET", "POST"])
 def chatbot_page():
-    return render_template("chatbot.html")
+    if request.method == "GET":
+        return render_template("chatbot.html")
 
-# Handle chatbot messages (POST)
-@app.route("/get_response", methods=["POST"])
-def get_chatbot_response():
+    # POST request: handle chatbot input
     data = request.get_json()
     user_message = data.get("message", "")
 
