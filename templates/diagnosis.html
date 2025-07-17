@@ -118,168 +118,165 @@
       </div>
     </div>
   
-  <div class="card p-4" data-aos="fade-up">
-      <form id="diagnosisForm" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
-        <div class="row g-4">
+<div class="card p-4" data-aos="fade-up">
+  <form id="diagnosisForm" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">
+    <div class="row g-4">
+      <!-- Example Field -->
+      <div class="col-md-4">
+        <label for="age">Age</label>
+        <input type="number" name="age" id="age" class="nice-input" placeholder="45" min="0" max="120" required>
+      </div>
 
-          <!-- EXAMPLE INPUT FIELD BLOCK -->
-          <div class="col-md-4 form-floating">
-            <input type="number" name="age" id="age" class="form-control" placeholder="45" min="0" max="120" required>
-            <label for="age">Age</label>
-          </div>
+      <div class="col-md-4">
+        <label for="bp">Blood Pressure</label>
+        <input type="number" name="bp" id="bp" class="nice-input" placeholder="80" min="0" max="200" required>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="bp" id="bp" class="form-control" placeholder="80" min="0" max="200" required>
-            <label for="bp">Blood Pressure</label>
-          </div>
+      <div class="col-md-4">
+        <label for="al">Albumin</label>
+        <input type="number" name="al" id="al" class="nice-input" placeholder="1" min="0" max="5">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="al" id="al" class="form-control" placeholder="1" min="0" max="5">
-            <label for="al">Albumin</label>
-          </div>
+      <div class="col-md-4">
+        <label for="su">Sugar</label>
+        <input type="number" name="su" id="su" class="nice-input" placeholder="0" min="0" max="5">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="su" id="su" class="form-control" placeholder="0" min="0" max="5">
-            <label for="su">Sugar</label>
-          </div>
+      <div class="col-md-4">
+        <label for="rbc">Red Blood Cells</label>
+        <select name="rbc" id="rbc" class="nice-select">
+          <option value="normal" selected>Normal</option>
+          <option value="abnormal">Abnormal</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="rbc" id="rbc" class="form-select">
-              <option value="normal" selected>Normal</option>
-              <option value="abnormal">Abnormal</option>
-            </select>
-            <label for="rbc">Red Blood Cells</label>
-          </div>
+      <div class="col-md-4">
+        <label for="pc">Pus Cell</label>
+        <select name="pc" id="pc" class="nice-select">
+          <option value="normal" selected>Normal</option>
+          <option value="abnormal">Abnormal</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="pc" id="pc" class="form-select">
-              <option value="normal" selected>Normal</option>
-              <option value="abnormal">Abnormal</option>
-            </select>
-            <label for="pc">Pus Cell</label>
-          </div>
+      <div class="col-md-4">
+        <label for="ba">Pus Cell Clumps</label>
+        <select name="ba" id="ba" class="nice-select">
+          <option value="notpresent" selected>Not Present</option>
+          <option value="present">Present</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="ba" id="ba" class="form-select">
-              <option value="notpresent" selected>Not Present</option>
-              <option value="present">Present</option>
-            </select>
-            <label for="ba">Pus Cell Clumps</label>
-          </div>
+      <div class="col-md-4">
+        <label for="bgr">Blood Glucose Random</label>
+        <input type="number" name="bgr" id="bgr" class="nice-input" placeholder="100" min="0" max="500">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="bgr" id="bgr" class="form-control" placeholder="100" min="0" max="500">
-            <label for="bgr">Blood Glucose Random</label>
-          </div>
+      <div class="col-md-4">
+        <label for="bu">Blood Urea</label>
+        <input type="number" name="bu" id="bu" class="nice-input" placeholder="30" min="0" max="200">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="bu" id="bu" class="form-control" placeholder="30" min="0" max="200">
-            <label for="bu">Blood Urea</label>
-          </div>
+      <div class="col-md-4">
+        <label for="sc">Serum Creatinine</label>
+        <input type="number" name="sc" id="sc" class="nice-input" placeholder="1.2" step="0.1" min="0" max="15">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="sc" id="sc" class="form-control" placeholder="1.2" step="0.1" min="0" max="15">
-            <label for="sc">Serum Creatinine</label>
-          </div>
+      <div class="col-md-4">
+        <label for="sod">Sodium</label>
+        <input type="number" name="sod" id="sod" class="nice-input" placeholder="140" min="100" max="200">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="sod" id="sod" class="form-control" placeholder="140" min="100" max="200">
-            <label for="sod">Sodium</label>
-          </div>
+      <div class="col-md-4">
+        <label for="pot">Potassium</label>
+        <input type="number" name="pot" id="pot" class="nice-input" placeholder="4.5" step="0.1" min="2" max="8">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="pot" id="pot" class="form-control" placeholder="4.5" step="0.1" min="2" max="8">
-            <label for="pot">Potassium</label>
-          </div>
+      <div class="col-md-4">
+        <label for="hemo">Hemoglobin</label>
+        <input type="number" name="hemo" id="hemo" class="nice-input" placeholder="12.0" step="0.1" min="5" max="20">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="hemo" id="hemo" class="form-control" placeholder="12.0" step="0.1" min="5" max="20">
-            <label for="hemo">Hemoglobin</label>
-          </div>
+      <div class="col-md-4">
+        <label for="wbcc">WBC Count</label>
+        <input type="number" name="wbcc" id="wbcc" class="nice-input" placeholder="8000" min="1000" max="25000">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="wbcc" id="wbcc" class="form-control" placeholder="8000" min="1000" max="25000">
-            <label for="wbcc">WBC Count</label>
-          </div>
+      <div class="col-md-4">
+        <label for="rbcc">RBC Count</label>
+        <input type="number" name="rbcc" id="rbcc" class="nice-input" placeholder="5.0" step="0.1" min="2" max="8">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="rbcc" id="rbcc" class="form-control" placeholder="5.0" step="0.1" min="2" max="8">
-            <label for="rbcc">RBC Count</label>
-          </div>
+      <div class="col-md-4">
+        <label for="htn">Hypertension</label>
+        <select name="htn" id="htn" class="nice-select">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="htn" id="htn" class="form-select">
-              <option value="no" selected>No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <label for="htn">Hypertension</label>
-          </div>
+      <div class="col-md-4">
+        <label for="dm">Diabetes Mellitus</label>
+        <select name="dm" id="dm" class="nice-select">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="dm" id="dm" class="form-select">
-              <option value="no" selected>No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <label for="dm">Diabetes Mellitus</label>
-          </div>
+      <div class="col-md-4">
+        <label for="appet">Appetite</label>
+        <select name="appet" id="appet" class="nice-select">
+          <option value="good" selected>Good</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="appet" id="appet" class="form-select">
-              <option value="good" selected>Good</option>
-              <option value="poor">Poor</option>
-            </select>
-            <label for="appet">Appetite</label>
-          </div>
+      <div class="col-md-4">
+        <label for="pe">Pedal Edema</label>
+        <select name="pe" id="pe" class="nice-select">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="pe" id="pe" class="form-select">
-              <option value="no" selected>No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <label for="pe">Pedal Edema</label>
-          </div>
+      <div class="col-md-4">
+        <label for="ane">Anemia</label>
+        <select name="ane" id="ane" class="nice-select">
+          <option value="no" selected>No</option>
+          <option value="yes">Yes</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="ane" id="ane" class="form-select">
-              <option value="no" selected>No</option>
-              <option value="yes">Yes</option>
-            </select>
-            <label for="ane">Anemia</label>
-          </div>
+      <div class="col-md-4">
+        <label for="bun_sc_ratio">BUN / Creatinine Ratio</label>
+        <input type="number" name="bun_sc_ratio" id="bun_sc_ratio" class="nice-input" placeholder="25" min="0" max="100">
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <input type="number" name="bun_sc_ratio" id="bun_sc_ratio" class="form-control" placeholder="25" min="0" max="100">
-            <label for="bun_sc_ratio">BUN / Creatinine Ratio</label>
-          </div>
+      <div class="col-md-4">
+        <label for="high_creatinine">High Creatinine Flag</label>
+        <select name="high_creatinine" id="high_creatinine" class="nice-select">
+          <option value="0" selected>No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 form-floating">
-            <select name="high_creatinine" id="high_creatinine" class="form-select">
-              <option value="0" selected>No</option>
-              <option value="1">Yes</option>
-            </select>
-            <label for="high_creatinine">High Creatinine Flag</label>
-          </div>
-
-          <div class="col-md-4 form-floating">
-            <input type="number" name="hemo_bu" id="hemo_bu" class="form-control" placeholder="360" min="0" max="1000">
-            <label for="hemo_bu">Hemoglobin × Blood Urea</label>
-          </div>
-
-        </div>
-
-        <!-- Submit Button -->
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
-        </div>
-      </form>
+      <div class="col-md-4">
+        <label for="hemo_bu">Hemoglobin × Blood Urea</label>
+        <input type="number" name="hemo_bu" id="hemo_bu" class="nice-input" placeholder="360" min="0" max="1000">
+      </div>
     </div>
+
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary btn-lg">Generate CKD Report</button>
+    </div>
+  </form>
+</div>
 
     <!-- Loading Spinner -->
     <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
       <div class="spinner-border text-primary" role="status"></div>
       <p class="mt-2">Generating your CKD report...</p>
     </div>
-  </main
+</main>
   <footer id="footer" class="footer light-background">
   
     <div class="container footer-top">
