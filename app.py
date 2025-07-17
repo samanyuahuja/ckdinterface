@@ -31,15 +31,12 @@ def about():
 @app.route("/chatbot")
 def chatbot_page():
     return render_template("chatbot.html")
-# Make sure to set your API key securely
- # Set this in Railway secrets
 
-# Serve chatbot page (GET)
 @app.route("/get_response", methods=["POST"])
 def get_chatbot_response():
     data = request.get_json()
     user_message = data.get("message", "").strip()
-    msg = user_message.lower()  # ✅ define msg properly
+    msg = user_message.lower()
 
     if not msg:
         return jsonify({"reply": "Please enter a message."})
